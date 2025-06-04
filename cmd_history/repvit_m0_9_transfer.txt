@@ -1,0 +1,1548 @@
+(base) lab@lab-ROG-Strix-GA35DX-G35DX:~/Desktop/RepVit/1132_ML-main/checkpoints$ ls
+repvit_m0_9                   repvit_m1_1_distill_450e.pth
+repvit_m0_9_distill_450e.pth  repvit_m1_5_distill_450e.pth
+repvit_m1_0                   repvit_m2_3_distill_450e.pth
+repvit_m1_0_distill_450e.pth
+(base) lab@lab-ROG-Strix-GA35DX-G35DX:~/Desktop/RepVit/1132_ML-main/checkpoints$ ls -b
+repvit_m0_9                   repvit_m1_1_distill_450e.pth
+repvit_m0_9_distill_450e.pth  repvit_m1_5_distill_450e.pth
+repvit_m1_0                   repvit_m2_3_distill_450e.pth
+(base) lab@lab-ROG-Strix-GA35DX-G35DX:~/Desktop/RepVit/1132_ML-main/checkpoints$ cd ../..
+(base) lab@lab-ROG-Strix-GA35DX-G35DX:~/Desktop/RepVit$ cd 1132_ML-main/
+(base) lab@lab-ROG-Strix-GA35DX-G35DX:~/Desktop/RepVit/1132_ML-main$ cd checkpoints/
+(base) lab@lab-ROG-Strix-GA35DX-G35DX:~/Desktop/RepVit/1132_ML-main/checkpoints$ conda repvit
+usage: conda [-h] [-v] [--no-plugins] [-V] COMMAND ...
+conda: error: argument COMMAND: invalid choice: 'repvit' (choose from activate, clean, commands, compare, config, content-trust, create, deactivate, doctor, env, export, info, init, install, list, notices, package, remove, rename, repoquery, run, search, tos, uninstall, update, upgrade)
+(base) lab@lab-ROG-Strix-GA35DX-G35DX:~/Desktop/RepVit/1132_ML-main/checkpoints$ conda activate repvit
+(repvit) lab@lab-ROG-Strix-GA35DX-G35DX:~/Desktop/RepVit/1132_ML-main/checkpoints$ python3 strip_cls.py 
+strip_cls.py:8: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  checkpoint = torch.load(ckpt_path, map_location='cpu')
+Traceback (most recent call last):
+  File "strip_cls.py", line 8, in <module>
+    checkpoint = torch.load(ckpt_path, map_location='cpu')
+  File "/home/lab/miniconda3/envs/repvit/lib/python3.8/site-packages/torch/serialization.py", line 1065, in load
+    with _open_file_like(f, 'rb') as opened_file:
+  File "/home/lab/miniconda3/envs/repvit/lib/python3.8/site-packages/torch/serialization.py", line 468, in _open_file_like
+    return _open_file(name_or_buffer, mode)
+  File "/home/lab/miniconda3/envs/repvit/lib/python3.8/site-packages/torch/serialization.py", line 449, in __init__
+    super().__init__(open(name, mode))
+FileNotFoundError: [Errno 2] No such file or directory: 'checkpoints/repvit_m0_9_distill_450e.pth'
+(repvit) lab@lab-ROG-Strix-GA35DX-G35DX:~/Desktop/RepVit/1132_ML-main/checkpoints$ python3 strip_classifier.py 
+處理文件：repvit_m1_5_distill_450e.pth …
+strip_classifier.py:15: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  ckpt = torch.load(fname, map_location='cpu')
+    - 已移除：classifier.classifier.l.weight
+    - 已移除：classifier.classifier.l.bias
+  ✅ 已覆蓋原檔：repvit_m1_5_distill_450e.pth （已去除最終 classifier 權重）
+
+處理文件：repvit_m1_1_distill_450e.pth …
+    - 已移除：classifier.classifier.l.weight
+    - 已移除：classifier.classifier.l.bias
+  ✅ 已覆蓋原檔：repvit_m1_1_distill_450e.pth （已去除最終 classifier 權重）
+
+處理文件：repvit_m0_9_distill_450e.pth …
+    - 已移除：classifier.classifier.l.weight
+    - 已移除：classifier.classifier.l.bias
+  ✅ 已覆蓋原檔：repvit_m0_9_distill_450e.pth （已去除最終 classifier 權重）
+
+處理文件：repvit_m1_0_distill_450e.pth …
+    - 已移除：classifier.classifier.l.weight
+    - 已移除：classifier.classifier.l.bias
+  ✅ 已覆蓋原檔：repvit_m1_0_distill_450e.pth （已去除最終 classifier 權重）
+
+處理文件：repvit_m2_3_distill_450e.pth …
+    - 已移除：classifier.classifier.l.weight
+    - 已移除：classifier.classifier.l.bias
+  ✅ 已覆蓋原檔：repvit_m2_3_distill_450e.pth （已去除最終 classifier 權重）
+
+🔚 全部檔案處理完畢，已移除所有 checkpoint 裡的 classifier 權重。
+(repvit) lab@lab-ROG-Strix-GA35DX-G35DX:~/Desktop/RepVit/1132_ML-main/checkpoints$ cd ..
+(repvit) lab@lab-ROG-Strix-GA35DX-G35DX:~/Desktop/RepVit/1132_ML-main$ WANDB_RUN_NAME="M0.9_none" python main.py --model repvit_m0_9 --finetune checkpoints/repvit_m0_9_distill_450e.pth --data-path tiny-imagenet-200 --epochs 30 --batch-size 128 --lr 0.01 --device cuda --nb-classes 200 --distillation-type none --project repvit_chen
+Not using distributed mode
+wandb: Currently logged in as: 11111239 (11111239-national-taitung-university) to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: Tracking run with wandb version 0.19.11
+wandb: Run data is saved locally in /home/lab/Desktop/RepVit/1132_ML-main/wandb/run-20250603_204059-lqi0ruhj
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run M0.9_none
+wandb: ⭐️ View project at https://wandb.ai/11111239-national-taitung-university/repvit_chen
+wandb: 🚀 View run at https://wandb.ai/11111239-national-taitung-university/repvit_chen/runs/lqi0ruhj
+Using nb_classes = 200
+Creating model: repvit_m0_9
+Loading local checkpoint at checkpoints/repvit_m0_9_distill_450e.pth
+main.py:287: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  checkpoint = torch.load(args.finetune, map_location='cpu')
+_IncompatibleKeys(missing_keys=['classifier.classifier.l.weight', 'classifier.classifier.l.bias'], unexpected_keys=['classifier.classifier_dist.bn.weight', 'classifier.classifier_dist.bn.bias', 'classifier.classifier_dist.bn.running_mean', 'classifier.classifier_dist.bn.running_var', 'classifier.classifier_dist.bn.num_batches_tracked', 'classifier.classifier_dist.l.weight', 'classifier.classifier_dist.l.bias'])
+number of params: 4795560
+/home/lab/miniconda3/envs/repvit/lib/python3.8/site-packages/timm/utils/cuda.py:40: FutureWarning: `torch.cuda.amp.GradScaler(args...)` is deprecated. Please use `torch.amp.GradScaler('cuda', args...)` instead.
+  self._scaler = torch.cuda.amp.GradScaler()
+RepViT(
+  (features): ModuleList(
+    (0): Sequential(
+      (0): Conv2d_BN(
+        (c): Conv2d(3, 24, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+        (bn): BatchNorm2d(24, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (1): GELU(approximate='none')
+      (2): Conv2d_BN(
+        (c): Conv2d(24, 48, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+        (bn): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (1): RepViTBlock(
+      (token_mixer): Sequential(
+        (0): RepVGGDW(
+          (conv): Conv2d_BN(
+            (c): Conv2d(48, 48, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=48, bias=False)
+            (bn): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+          (conv1): Conv2d(48, 48, kernel_size=(1, 1), stride=(1, 1), groups=48)
+          (bn): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (1): SEModule(
+          (fc1): Conv2d(48, 16, kernel_size=(1, 1), stride=(1, 1))
+          (bn): Identity()
+          (act): ReLU(inplace=True)
+          (fc2): Conv2d(16, 48, kernel_size=(1, 1), stride=(1, 1))
+          (gate): Sigmoid()
+        )
+      )
+      (channel_mixer): Residual(
+        (m): Sequential(
+          (0): Conv2d_BN(
+            (c): Conv2d(48, 96, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (bn): BatchNorm2d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+          (1): GELU(approximate='none')
+          (2): Conv2d_BN(
+            (c): Conv2d(96, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (bn): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+        )
+      )
+    )
+    (2-3): 2 x RepViTBlock(
+      (token_mixer): Sequential(
+        (0): RepVGGDW(
+          (conv): Conv2d_BN(
+            (c): Conv2d(48, 48, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=48, bias=False)
+            (bn): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+          (conv1): Conv2d(48, 48, kernel_size=(1, 1), stride=(1, 1), groups=48)
+          (bn): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (1): Identity()
+      )
+      (channel_mixer): Residual(
+        (m): Sequential(
+          (0): Conv2d_BN(
+            (c): Conv2d(48, 96, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (bn): BatchNorm2d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+          (1): GELU(approximate='none')
+          (2): Conv2d_BN(
+            (c): Conv2d(96, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (bn): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+        )
+      )
+    )
+    (4): RepViTBlock(
+      (token_mixer): Sequential(
+        (0): Conv2d_BN(
+          (c): Conv2d(48, 48, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), groups=48, bias=False)
+          (bn): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (1): Identity()
+        (2): Conv2d_BN(
+          (c): Conv2d(48, 96, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (bn): BatchNorm2d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+      )
+      (channel_mixer): Residual(
+        (m): Sequential(
+          (0): Conv2d_BN(
+            (c): Conv2d(96, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (bn): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+          (1): GELU(approximate='none')
+          (2): Conv2d_BN(
+            (c): Conv2d(192, 96, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (bn): BatchNorm2d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+        )
+      )
+    )
+    (5): RepViTBlock(
+      (token_mixer): Sequential(
+        (0): RepVGGDW(
+          (conv): Conv2d_BN(
+            (c): Conv2d(96, 96, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=96, bias=False)
+            (bn): BatchNorm2d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+          (conv1): Conv2d(96, 96, kernel_size=(1, 1), stride=(1, 1), groups=96)
+          (bn): BatchNorm2d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (1): SEModule(
+          (fc1): Conv2d(96, 24, kernel_size=(1, 1), stride=(1, 1))
+          (bn): Identity()
+          (act): ReLU(inplace=True)
+          (fc2): Conv2d(24, 96, kernel_size=(1, 1), stride=(1, 1))
+          (gate): Sigmoid()
+        )
+      )
+      (channel_mixer): Residual(
+        (m): Sequential(
+          (0): Conv2d_BN(
+            (c): Conv2d(96, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (bn): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+          (1): GELU(approximate='none')
+          (2): Conv2d_BN(
+            (c): Conv2d(192, 96, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (bn): BatchNorm2d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+        )
+      )
+    )
+    (6-7): 2 x RepViTBlock(
+      (token_mixer): Sequential(
+        (0): RepVGGDW(
+          (conv): Conv2d_BN(
+            (c): Conv2d(96, 96, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=96, bias=False)
+            (bn): BatchNorm2d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+          (conv1): Conv2d(96, 96, kernel_size=(1, 1), stride=(1, 1), groups=96)
+          (bn): BatchNorm2d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (1): Identity()
+      )
+      (channel_mixer): Residual(
+        (m): Sequential(
+          (0): Conv2d_BN(
+            (c): Conv2d(96, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (bn): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+          (1): GELU(approximate='none')
+          (2): Conv2d_BN(
+            (c): Conv2d(192, 96, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (bn): BatchNorm2d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+        )
+      )
+    )
+    (8): RepViTBlock(
+      (token_mixer): Sequential(
+        (0): Conv2d_BN(
+          (c): Conv2d(96, 96, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), groups=96, bias=False)
+          (bn): BatchNorm2d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (1): Identity()
+        (2): Conv2d_BN(
+          (c): Conv2d(96, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (bn): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+      )
+      (channel_mixer): Residual(
+        (m): Sequential(
+          (0): Conv2d_BN(
+            (c): Conv2d(192, 384, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (bn): BatchNorm2d(384, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+          (1): GELU(approximate='none')
+          (2): Conv2d_BN(
+            (c): Conv2d(384, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (bn): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+        )
+      )
+    )
+    (9): RepViTBlock(
+      (token_mixer): Sequential(
+        (0): RepVGGDW(
+          (conv): Conv2d_BN(
+            (c): Conv2d(192, 192, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=192, bias=False)
+            (bn): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+          (conv1): Conv2d(192, 192, kernel_size=(1, 1), stride=(1, 1), groups=192)
+          (bn): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (1): SEModule(
+          (fc1): Conv2d(192, 48, kernel_size=(1, 1), stride=(1, 1))
+          (bn): Identity()
+          (act): ReLU(inplace=True)
+          (fc2): Conv2d(48, 192, kernel_size=(1, 1), stride=(1, 1))
+          (gate): Sigmoid()
+        )
+      )
+      (channel_mixer): Residual(
+        (m): Sequential(
+          (0): Conv2d_BN(
+            (c): Conv2d(192, 384, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (bn): BatchNorm2d(384, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+          (1): GELU(approximate='none')
+          (2): Conv2d_BN(
+            (c): Conv2d(384, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (bn): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+        )
+      )
+    )
+    (10): RepViTBlock(
+      (token_mixer): Sequential(
+        (0): RepVGGDW(
+          (conv): Conv2d_BN(
+            (c): Conv2d(192, 192, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=192, bias=False)
+            (bn): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+          (conv1): Conv2d(192, 192, kernel_size=(1, 1), stride=(1, 1), groups=192)
+          (bn): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (1): Identity()
+      )
+      (channel_mixer): Residual(
+        (m): Sequential(
+          (0): Conv2d_BN(
+            (c): Conv2d(192, 384, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (bn): BatchNorm2d(384, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+          (1): GELU(approximate='none')
+          (2): Conv2d_BN(
+            (c): Conv2d(384, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (bn): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+        )
+      )
+    )
+    (11): RepViTBlock(
+      (token_mixer): Sequential(
+        (0): RepVGGDW(
+          (conv): Conv2d_BN(
+            (c): Conv2d(192, 192, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=192, bias=False)
+            (bn): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+          (conv1): Conv2d(192, 192, kernel_size=(1, 1), stride=(1, 1), groups=192)
+          (bn): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (1): SEModule(
+          (fc1): Conv2d(192, 48, kernel_size=(1, 1), stride=(1, 1))
+          (bn): Identity()
+          (act): ReLU(inplace=True)
+          (fc2): Conv2d(48, 192, kernel_size=(1, 1), stride=(1, 1))
+          (gate): Sigmoid()
+        )
+      )
+      (channel_mixer): Residual(
+        (m): Sequential(
+          (0): Conv2d_BN(
+            (c): Conv2d(192, 384, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (bn): BatchNorm2d(384, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+          (1): GELU(approximate='none')
+          (2): Conv2d_BN(
+            (c): Conv2d(384, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (bn): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+        )
+      )
+    )
+    (12): RepViTBlock(
+      (token_mixer): Sequential(
+        (0): RepVGGDW(
+          (conv): Conv2d_BN(
+            (c): Conv2d(192, 192, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=192, bias=False)
+            (bn): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+          (conv1): Conv2d(192, 192, kernel_size=(1, 1), stride=(1, 1), groups=192)
+          (bn): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (1): Identity()
+      )
+      (channel_mixer): Residual(
+        (m): Sequential(
+          (0): Conv2d_BN(
+            (c): Conv2d(192, 384, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (bn): BatchNorm2d(384, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+          (1): GELU(approximate='none')
+          (2): Conv2d_BN(
+            (c): Conv2d(384, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (bn): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+        )
+      )
+    )
+    (13): RepViTBlock(
+      (token_mixer): Sequential(
+        (0): RepVGGDW(
+          (conv): Conv2d_BN(
+            (c): Conv2d(192, 192, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=192, bias=False)
+            (bn): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+          (conv1): Conv2d(192, 192, kernel_size=(1, 1), stride=(1, 1), groups=192)
+          (bn): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (1): SEModule(
+          (fc1): Conv2d(192, 48, kernel_size=(1, 1), stride=(1, 1))
+          (bn): Identity()
+          (act): ReLU(inplace=True)
+          (fc2): Conv2d(48, 192, kernel_size=(1, 1), stride=(1, 1))
+          (gate): Sigmoid()
+        )
+      )
+      (channel_mixer): Residual(
+        (m): Sequential(
+          (0): Conv2d_BN(
+            (c): Conv2d(192, 384, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (bn): BatchNorm2d(384, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+          (1): GELU(approximate='none')
+          (2): Conv2d_BN(
+            (c): Conv2d(384, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (bn): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+        )
+      )
+    )
+    (14): RepViTBlock(
+      (token_mixer): Sequential(
+        (0): RepVGGDW(
+          (conv): Conv2d_BN(
+            (c): Conv2d(192, 192, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=192, bias=False)
+            (bn): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+          (conv1): Conv2d(192, 192, kernel_size=(1, 1), stride=(1, 1), groups=192)
+          (bn): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (1): Identity()
+      )
+      (channel_mixer): Residual(
+        (m): Sequential(
+          (0): Conv2d_BN(
+            (c): Conv2d(192, 384, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (bn): BatchNorm2d(384, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+          (1): GELU(approximate='none')
+          (2): Conv2d_BN(
+            (c): Conv2d(384, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (bn): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+        )
+      )
+    )
+    (15): RepViTBlock(
+      (token_mixer): Sequential(
+        (0): RepVGGDW(
+          (conv): Conv2d_BN(
+            (c): Conv2d(192, 192, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=192, bias=False)
+            (bn): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+          (conv1): Conv2d(192, 192, kernel_size=(1, 1), stride=(1, 1), groups=192)
+          (bn): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (1): SEModule(
+          (fc1): Conv2d(192, 48, kernel_size=(1, 1), stride=(1, 1))
+          (bn): Identity()
+          (act): ReLU(inplace=True)
+          (fc2): Conv2d(48, 192, kernel_size=(1, 1), stride=(1, 1))
+          (gate): Sigmoid()
+        )
+      )
+      (channel_mixer): Residual(
+        (m): Sequential(
+          (0): Conv2d_BN(
+            (c): Conv2d(192, 384, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (bn): BatchNorm2d(384, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+          (1): GELU(approximate='none')
+          (2): Conv2d_BN(
+            (c): Conv2d(384, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (bn): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+        )
+      )
+    )
+    (16): RepViTBlock(
+      (token_mixer): Sequential(
+        (0): RepVGGDW(
+          (conv): Conv2d_BN(
+            (c): Conv2d(192, 192, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=192, bias=False)
+            (bn): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+          (conv1): Conv2d(192, 192, kernel_size=(1, 1), stride=(1, 1), groups=192)
+          (bn): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (1): Identity()
+      )
+      (channel_mixer): Residual(
+        (m): Sequential(
+          (0): Conv2d_BN(
+            (c): Conv2d(192, 384, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (bn): BatchNorm2d(384, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+          (1): GELU(approximate='none')
+          (2): Conv2d_BN(
+            (c): Conv2d(384, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (bn): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+        )
+      )
+    )
+    (17): RepViTBlock(
+      (token_mixer): Sequential(
+        (0): RepVGGDW(
+          (conv): Conv2d_BN(
+            (c): Conv2d(192, 192, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=192, bias=False)
+            (bn): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+          (conv1): Conv2d(192, 192, kernel_size=(1, 1), stride=(1, 1), groups=192)
+          (bn): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (1): SEModule(
+          (fc1): Conv2d(192, 48, kernel_size=(1, 1), stride=(1, 1))
+          (bn): Identity()
+          (act): ReLU(inplace=True)
+          (fc2): Conv2d(48, 192, kernel_size=(1, 1), stride=(1, 1))
+          (gate): Sigmoid()
+        )
+      )
+      (channel_mixer): Residual(
+        (m): Sequential(
+          (0): Conv2d_BN(
+            (c): Conv2d(192, 384, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (bn): BatchNorm2d(384, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+          (1): GELU(approximate='none')
+          (2): Conv2d_BN(
+            (c): Conv2d(384, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (bn): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+        )
+      )
+    )
+    (18): RepViTBlock(
+      (token_mixer): Sequential(
+        (0): RepVGGDW(
+          (conv): Conv2d_BN(
+            (c): Conv2d(192, 192, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=192, bias=False)
+            (bn): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+          (conv1): Conv2d(192, 192, kernel_size=(1, 1), stride=(1, 1), groups=192)
+          (bn): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (1): Identity()
+      )
+      (channel_mixer): Residual(
+        (m): Sequential(
+          (0): Conv2d_BN(
+            (c): Conv2d(192, 384, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (bn): BatchNorm2d(384, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+          (1): GELU(approximate='none')
+          (2): Conv2d_BN(
+            (c): Conv2d(384, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (bn): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+        )
+      )
+    )
+    (19): RepViTBlock(
+      (token_mixer): Sequential(
+        (0): RepVGGDW(
+          (conv): Conv2d_BN(
+            (c): Conv2d(192, 192, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=192, bias=False)
+            (bn): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+          (conv1): Conv2d(192, 192, kernel_size=(1, 1), stride=(1, 1), groups=192)
+          (bn): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (1): SEModule(
+          (fc1): Conv2d(192, 48, kernel_size=(1, 1), stride=(1, 1))
+          (bn): Identity()
+          (act): ReLU(inplace=True)
+          (fc2): Conv2d(48, 192, kernel_size=(1, 1), stride=(1, 1))
+          (gate): Sigmoid()
+        )
+      )
+      (channel_mixer): Residual(
+        (m): Sequential(
+          (0): Conv2d_BN(
+            (c): Conv2d(192, 384, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (bn): BatchNorm2d(384, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+          (1): GELU(approximate='none')
+          (2): Conv2d_BN(
+            (c): Conv2d(384, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (bn): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+        )
+      )
+    )
+    (20): RepViTBlock(
+      (token_mixer): Sequential(
+        (0): RepVGGDW(
+          (conv): Conv2d_BN(
+            (c): Conv2d(192, 192, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=192, bias=False)
+            (bn): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+          (conv1): Conv2d(192, 192, kernel_size=(1, 1), stride=(1, 1), groups=192)
+          (bn): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (1): Identity()
+      )
+      (channel_mixer): Residual(
+        (m): Sequential(
+          (0): Conv2d_BN(
+            (c): Conv2d(192, 384, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (bn): BatchNorm2d(384, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+          (1): GELU(approximate='none')
+          (2): Conv2d_BN(
+            (c): Conv2d(384, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (bn): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+        )
+      )
+    )
+    (21): RepViTBlock(
+      (token_mixer): Sequential(
+        (0): RepVGGDW(
+          (conv): Conv2d_BN(
+            (c): Conv2d(192, 192, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=192, bias=False)
+            (bn): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+          (conv1): Conv2d(192, 192, kernel_size=(1, 1), stride=(1, 1), groups=192)
+          (bn): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (1): SEModule(
+          (fc1): Conv2d(192, 48, kernel_size=(1, 1), stride=(1, 1))
+          (bn): Identity()
+          (act): ReLU(inplace=True)
+          (fc2): Conv2d(48, 192, kernel_size=(1, 1), stride=(1, 1))
+          (gate): Sigmoid()
+        )
+      )
+      (channel_mixer): Residual(
+        (m): Sequential(
+          (0): Conv2d_BN(
+            (c): Conv2d(192, 384, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (bn): BatchNorm2d(384, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+          (1): GELU(approximate='none')
+          (2): Conv2d_BN(
+            (c): Conv2d(384, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (bn): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+        )
+      )
+    )
+    (22-23): 2 x RepViTBlock(
+      (token_mixer): Sequential(
+        (0): RepVGGDW(
+          (conv): Conv2d_BN(
+            (c): Conv2d(192, 192, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=192, bias=False)
+            (bn): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+          (conv1): Conv2d(192, 192, kernel_size=(1, 1), stride=(1, 1), groups=192)
+          (bn): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (1): Identity()
+      )
+      (channel_mixer): Residual(
+        (m): Sequential(
+          (0): Conv2d_BN(
+            (c): Conv2d(192, 384, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (bn): BatchNorm2d(384, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+          (1): GELU(approximate='none')
+          (2): Conv2d_BN(
+            (c): Conv2d(384, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (bn): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+        )
+      )
+    )
+    (24): RepViTBlock(
+      (token_mixer): Sequential(
+        (0): Conv2d_BN(
+          (c): Conv2d(192, 192, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), groups=192, bias=False)
+          (bn): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (1): Identity()
+        (2): Conv2d_BN(
+          (c): Conv2d(192, 384, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (bn): BatchNorm2d(384, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+      )
+      (channel_mixer): Residual(
+        (m): Sequential(
+          (0): Conv2d_BN(
+            (c): Conv2d(384, 768, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (bn): BatchNorm2d(768, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+          (1): GELU(approximate='none')
+          (2): Conv2d_BN(
+            (c): Conv2d(768, 384, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (bn): BatchNorm2d(384, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+        )
+      )
+    )
+    (25): RepViTBlock(
+      (token_mixer): Sequential(
+        (0): RepVGGDW(
+          (conv): Conv2d_BN(
+            (c): Conv2d(384, 384, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=384, bias=False)
+            (bn): BatchNorm2d(384, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+          (conv1): Conv2d(384, 384, kernel_size=(1, 1), stride=(1, 1), groups=384)
+          (bn): BatchNorm2d(384, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (1): SEModule(
+          (fc1): Conv2d(384, 96, kernel_size=(1, 1), stride=(1, 1))
+          (bn): Identity()
+          (act): ReLU(inplace=True)
+          (fc2): Conv2d(96, 384, kernel_size=(1, 1), stride=(1, 1))
+          (gate): Sigmoid()
+        )
+      )
+      (channel_mixer): Residual(
+        (m): Sequential(
+          (0): Conv2d_BN(
+            (c): Conv2d(384, 768, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (bn): BatchNorm2d(768, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+          (1): GELU(approximate='none')
+          (2): Conv2d_BN(
+            (c): Conv2d(768, 384, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (bn): BatchNorm2d(384, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+        )
+      )
+    )
+    (26): RepViTBlock(
+      (token_mixer): Sequential(
+        (0): RepVGGDW(
+          (conv): Conv2d_BN(
+            (c): Conv2d(384, 384, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=384, bias=False)
+            (bn): BatchNorm2d(384, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+          (conv1): Conv2d(384, 384, kernel_size=(1, 1), stride=(1, 1), groups=384)
+          (bn): BatchNorm2d(384, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (1): Identity()
+      )
+      (channel_mixer): Residual(
+        (m): Sequential(
+          (0): Conv2d_BN(
+            (c): Conv2d(384, 768, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (bn): BatchNorm2d(768, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+          (1): GELU(approximate='none')
+          (2): Conv2d_BN(
+            (c): Conv2d(768, 384, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (bn): BatchNorm2d(384, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+        )
+      )
+    )
+  )
+  (classifier): Classfier(
+    (classifier): BN_Linear(
+      (bn): BatchNorm1d(384, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (l): Linear(in_features=384, out_features=200, bias=True)
+    )
+  )
+)
+{
+  "batch_size": 128,
+  "epochs": 30,
+  "model": "repvit_m0_9",
+  "input_size": 224,
+  "model_ema": true,
+  "model_ema_decay": 0.99996,
+  "model_ema_force_cpu": false,
+  "opt": "adamw",
+  "opt_eps": 1e-08,
+  "opt_betas": null,
+  "clip_grad": 0.02,
+  "clip_mode": "agc",
+  "momentum": 0.9,
+  "weight_decay": 0.025,
+  "sched": "cosine",
+  "lr": 0.0025,
+  "lr_noise": null,
+  "lr_noise_pct": 0.67,
+  "lr_noise_std": 1.0,
+  "warmup_lr": 1e-06,
+  "min_lr": 1e-05,
+  "decay_epochs": 30,
+  "warmup_epochs": 5,
+  "cooldown_epochs": 10,
+  "patience_epochs": 10,
+  "decay_rate": 0.1,
+  "ThreeAugment": false,
+  "color_jitter": 0.4,
+  "aa": "rand-m9-mstd0.5-inc1",
+  "smoothing": 0.1,
+  "train_interpolation": "bicubic",
+  "repeated_aug": true,
+  "reprob": 0.25,
+  "remode": "pixel",
+  "recount": 1,
+  "resplit": false,
+  "mixup": 0.8,
+  "cutmix": 1.0,
+  "cutmix_minmax": null,
+  "mixup_prob": 1.0,
+  "mixup_switch_prob": 0.5,
+  "mixup_mode": "batch",
+  "teacher_model": "regnety_160",
+  "teacher_path": "https://dl.fbaipublicfiles.com/deit/regnety_160-a5fe301d.pth",
+  "distillation_type": "none",
+  "distillation_alpha": 0.5,
+  "distillation_tau": 1.0,
+  "finetune": "checkpoints/repvit_m0_9_distill_450e.pth",
+  "set_bn_eval": false,
+  "nb_classes": 200,
+  "data_path": "tiny-imagenet-200",
+  "data_set": "IMNET",
+  "inat_category": "name",
+  "output_dir": "checkpoints/repvit_m0_9/2025_06_03_20_40_58",
+  "device": "cuda",
+  "seed": 0,
+  "resume": "",
+  "start_epoch": 0,
+  "eval": false,
+  "dist_eval": false,
+  "num_workers": 10,
+  "pin_mem": true,
+  "world_size": 1,
+  "dist_url": "env://",
+  "save_freq": 1,
+  "deploy": false,
+  "project": "repvit_chen",
+  "distributed": false
+}
+
+Start training for 30 epochs
+/home/lab/Desktop/RepVit/1132_ML-main/engine.py:46: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+Epoch: [0]  [  0/780]  eta: 6:02:48  lr: 0.000001  loss: 5.3146 (5.3146)  time: 27.9078  data: 1.0746  max mem: 4432
+Epoch: [0]  [100/780]  eta: 0:04:42  lr: 0.000001  loss: 5.3141 (5.3152)  time: 0.1351  data: 0.0002  max mem: 4456
+Epoch: [0]  [200/780]  eta: 0:02:40  lr: 0.000001  loss: 5.3139 (5.3149)  time: 0.1345  data: 0.0002  max mem: 4456
+Epoch: [0]  [300/780]  eta: 0:01:50  lr: 0.000001  loss: 5.3160 (5.3153)  time: 0.1392  data: 0.0002  max mem: 4456
+Epoch: [0]  [400/780]  eta: 0:01:18  lr: 0.000001  loss: 5.3128 (5.3149)  time: 0.1351  data: 0.0002  max mem: 4456
+Epoch: [0]  [500/780]  eta: 0:00:53  lr: 0.000001  loss: 5.3142 (5.3143)  time: 0.1346  data: 0.0002  max mem: 4456
+Epoch: [0]  [600/780]  eta: 0:00:32  lr: 0.000001  loss: 5.3099 (5.3143)  time: 0.1349  data: 0.0002  max mem: 4456
+Epoch: [0]  [700/780]  eta: 0:00:14  lr: 0.000001  loss: 5.3087 (5.3140)  time: 0.1380  data: 0.0002  max mem: 4456
+Epoch: [0]  [779/780]  eta: 0:00:00  lr: 0.000001  loss: 5.3053 (5.3135)  time: 0.1355  data: 0.0001  max mem: 4456
+Epoch: [0] Total time: 0:02:14 (0.1724 s / it)
+Averaged stats: lr: 0.000001  loss: 5.3053 (5.3135)
+/home/lab/Desktop/RepVit/1132_ML-main/engine.py:91: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+Test:  [ 0/53]  eta: 0:04:22  loss: 5.2412 (5.2412)  acc1: 1.5625 (1.5625)  acc5: 5.7292 (5.7292)  time: 4.9609  data: 1.1149  max mem: 4456
+Test:  [10/53]  eta: 0:00:21  loss: 5.2606 (5.2761)  acc1: 0.5208 (0.8523)  acc5: 3.1250 (3.4564)  time: 0.4884  data: 0.1016  max mem: 4456
+Test:  [20/53]  eta: 0:00:09  loss: 5.2641 (5.2755)  acc1: 0.5208 (0.8681)  acc5: 3.1250 (3.8194)  time: 0.0428  data: 0.0004  max mem: 4456
+Test:  [30/53]  eta: 0:00:04  loss: 5.2920 (5.2883)  acc1: 0.5208 (0.7392)  acc5: 2.6042 (3.2930)  time: 0.0440  data: 0.0005  max mem: 4456
+Test:  [40/53]  eta: 0:00:02  loss: 5.2962 (5.2896)  acc1: 0.0000 (0.7241)  acc5: 1.5625 (3.2647)  time: 0.0428  data: 0.0004  max mem: 4456
+Test:  [50/53]  eta: 0:00:00  loss: 5.3077 (5.2960)  acc1: 0.0000 (0.6434)  acc5: 1.5625 (2.9616)  time: 0.0409  data: 0.0002  max mem: 4456
+Test:  [52/53]  eta: 0:00:00  loss: 5.3120 (5.2990)  acc1: 0.0000 (0.6300)  acc5: 1.5625 (2.9300)  time: 0.1644  data: 0.0001  max mem: 4456
+Test: Total time: 0:00:09 (0.1831 s / it)
+* Acc@1 0.630 Acc@5 2.930 loss 5.299
+Accuracy of the network on the 10000 test images: 0.6%
+Saving checkpoint to checkpoints/repvit_m0_9/2025_06_03_20_40_58/checkpoint_0.pth
+Max accuracy: 0.63%
+Epoch: [1]  [  0/780]  eta: 0:14:22  lr: 0.000001  loss: 5.3143 (5.3143)  time: 1.1052  data: 0.8794  max mem: 4456
+Epoch: [1]  [100/780]  eta: 0:01:40  lr: 0.000001  loss: 5.3137 (5.3107)  time: 0.1376  data: 0.0002  max mem: 4456
+Epoch: [1]  [200/780]  eta: 0:01:23  lr: 0.000001  loss: 5.3136 (5.3108)  time: 0.1384  data: 0.0002  max mem: 4456
+Epoch: [1]  [300/780]  eta: 0:01:07  lr: 0.000001  loss: 5.3096 (5.3098)  time: 0.1359  data: 0.0002  max mem: 4456
+Epoch: [1]  [400/780]  eta: 0:00:53  lr: 0.000001  loss: 5.3086 (5.3102)  time: 0.1358  data: 0.0002  max mem: 4456
+Epoch: [1]  [500/780]  eta: 0:00:38  lr: 0.000001  loss: 5.3139 (5.3106)  time: 0.1361  data: 0.0002  max mem: 4456
+Epoch: [1]  [600/780]  eta: 0:00:24  lr: 0.000001  loss: 5.3005 (5.3101)  time: 0.1354  data: 0.0002  max mem: 4456
+Epoch: [1]  [700/780]  eta: 0:00:11  lr: 0.000001  loss: 5.3047 (5.3097)  time: 0.1359  data: 0.0002  max mem: 4456
+Epoch: [1]  [779/780]  eta: 0:00:00  lr: 0.000001  loss: 5.3005 (5.3096)  time: 0.1334  data: 0.0001  max mem: 4456
+Epoch: [1] Total time: 0:01:47 (0.1381 s / it)
+Averaged stats: lr: 0.000001  loss: 5.3005 (5.3096)
+Test:  [ 0/53]  eta: 0:00:46  loss: 5.2321 (5.2321)  acc1: 1.5625 (1.5625)  acc5: 6.7708 (6.7708)  time: 0.8697  data: 0.8272  max mem: 4456
+Test:  [10/53]  eta: 0:00:06  loss: 5.2480 (5.2690)  acc1: 1.0417 (0.9470)  acc5: 3.6458 (3.8352)  time: 0.1531  data: 0.1116  max mem: 4456
+Test:  [20/53]  eta: 0:00:03  loss: 5.2632 (5.2676)  acc1: 0.5208 (1.0665)  acc5: 3.6458 (4.3403)  time: 0.0627  data: 0.0204  max mem: 4456
+Test:  [30/53]  eta: 0:00:01  loss: 5.2859 (5.2802)  acc1: 0.5208 (0.8905)  acc5: 2.6042 (3.7634)  time: 0.0442  data: 0.0007  max mem: 4456
+Test:  [40/53]  eta: 0:00:00  loss: 5.2870 (5.2811)  acc1: 0.5208 (0.8638)  acc5: 2.6042 (3.8491)  time: 0.0446  data: 0.0020  max mem: 4456
+Test:  [50/53]  eta: 0:00:00  loss: 5.3017 (5.2875)  acc1: 0.0000 (0.7659)  acc5: 2.0833 (3.4722)  time: 0.0424  data: 0.0017  max mem: 4456
+Test:  [52/53]  eta: 0:00:00  loss: 5.3050 (5.2904)  acc1: 0.0000 (0.7500)  acc5: 1.5625 (3.4300)  time: 0.0404  data: 0.0016  max mem: 4456
+Test: Total time: 0:00:03 (0.0669 s / it)
+* Acc@1 0.750 Acc@5 3.430 loss 5.290
+Accuracy of the network on the 10000 test images: 0.8%
+Saving checkpoint to checkpoints/repvit_m0_9/2025_06_03_20_40_58/checkpoint_1.pth
+Max accuracy: 0.75%
+Epoch: [2]  [  0/780]  eta: 0:13:51  lr: 0.000501  loss: 5.3134 (5.3134)  time: 1.0659  data: 0.8859  max mem: 4456
+Epoch: [2]  [100/780]  eta: 0:01:38  lr: 0.000501  loss: 5.1266 (5.2141)  time: 0.1362  data: 0.0002  max mem: 4456
+Epoch: [2]  [200/780]  eta: 0:01:21  lr: 0.000501  loss: 5.0345 (5.1541)  time: 0.1367  data: 0.0002  max mem: 4456
+Epoch: [2]  [300/780]  eta: 0:01:06  lr: 0.000501  loss: 4.8554 (5.0896)  time: 0.1358  data: 0.0002  max mem: 4456
+Epoch: [2]  [400/780]  eta: 0:00:52  lr: 0.000501  loss: 4.7560 (5.0187)  time: 0.1354  data: 0.0002  max mem: 4456
+Epoch: [2]  [500/780]  eta: 0:00:38  lr: 0.000501  loss: 4.6408 (4.9633)  time: 0.1346  data: 0.0002  max mem: 4456
+Epoch: [2]  [600/780]  eta: 0:00:24  lr: 0.000501  loss: 4.6787 (4.9169)  time: 0.1351  data: 0.0002  max mem: 4456
+Epoch: [2]  [700/780]  eta: 0:00:10  lr: 0.000501  loss: 4.4701 (4.8706)  time: 0.1350  data: 0.0002  max mem: 4456
+Epoch: [2]  [779/780]  eta: 0:00:00  lr: 0.000501  loss: 4.6044 (4.8438)  time: 0.1317  data: 0.0001  max mem: 4456
+Epoch: [2] Total time: 0:01:46 (0.1369 s / it)
+Averaged stats: lr: 0.000501  loss: 4.6044 (4.8438)
+Test:  [ 0/53]  eta: 0:00:39  loss: 2.1838 (2.1838)  acc1: 71.8750 (71.8750)  acc5: 91.6667 (91.6667)  time: 0.7451  data: 0.7025  max mem: 4456
+Test:  [10/53]  eta: 0:00:06  loss: 2.4463 (2.5996)  acc1: 55.7292 (58.8068)  acc5: 86.9792 (86.6004)  time: 0.1408  data: 0.0993  max mem: 4456
+Test:  [20/53]  eta: 0:00:03  loss: 2.8284 (2.7349)  acc1: 55.7292 (57.7133)  acc5: 84.3750 (84.6974)  time: 0.0665  data: 0.0250  max mem: 4456
+Test:  [30/53]  eta: 0:00:01  loss: 3.0867 (2.8253)  acc1: 54.1667 (56.1324)  acc5: 80.2083 (83.2493)  time: 0.0482  data: 0.0058  max mem: 4456
+Test:  [40/53]  eta: 0:00:00  loss: 3.1883 (2.8908)  acc1: 53.1250 (55.3735)  acc5: 79.1667 (82.3044)  time: 0.0426  data: 0.0005  max mem: 4456
+Test:  [50/53]  eta: 0:00:00  loss: 3.0012 (2.9128)  acc1: 54.1667 (55.2288)  acc5: 81.7708 (82.2712)  time: 0.0406  data: 0.0002  max mem: 4456
+Test:  [52/53]  eta: 0:00:00  loss: 3.0012 (2.9048)  acc1: 54.1667 (55.1400)  acc5: 81.7708 (82.4300)  time: 0.0388  data: 0.0001  max mem: 4456
+Test: Total time: 0:00:03 (0.0652 s / it)
+* Acc@1 55.140 Acc@5 82.430 loss 2.905
+Accuracy of the network on the 10000 test images: 55.1%
+Saving checkpoint to checkpoints/repvit_m0_9/2025_06_03_20_40_58/checkpoint_2.pth
+Max accuracy: 55.14%
+Epoch: [3]  [  0/780]  eta: 0:11:57  lr: 0.001001  loss: 4.6316 (4.6316)  time: 0.9194  data: 0.7613  max mem: 4456
+Epoch: [3]  [100/780]  eta: 0:01:37  lr: 0.001001  loss: 4.8149 (4.7176)  time: 0.1356  data: 0.0002  max mem: 4456
+Epoch: [3]  [200/780]  eta: 0:01:21  lr: 0.001001  loss: 4.8320 (4.7367)  time: 0.1368  data: 0.0002  max mem: 4456
+Epoch: [3]  [300/780]  eta: 0:01:06  lr: 0.001001  loss: 4.7832 (4.7467)  time: 0.1358  data: 0.0002  max mem: 4456
+Epoch: [3]  [400/780]  eta: 0:00:52  lr: 0.001001  loss: 4.5972 (4.7473)  time: 0.1398  data: 0.0002  max mem: 4456
+Epoch: [3]  [500/780]  eta: 0:00:38  lr: 0.001001  loss: 4.6238 (4.7392)  time: 0.1360  data: 0.0002  max mem: 4456
+Epoch: [3]  [600/780]  eta: 0:00:24  lr: 0.001001  loss: 4.7427 (4.7281)  time: 0.1361  data: 0.0002  max mem: 4456
+Epoch: [3]  [700/780]  eta: 0:00:10  lr: 0.001001  loss: 4.6314 (4.7183)  time: 0.1356  data: 0.0002  max mem: 4456
+Epoch: [3]  [779/780]  eta: 0:00:00  lr: 0.001001  loss: 4.6790 (4.7122)  time: 0.1325  data: 0.0001  max mem: 4456
+Epoch: [3] Total time: 0:01:47 (0.1372 s / it)
+Averaged stats: lr: 0.001001  loss: 4.6790 (4.7122)
+Test:  [ 0/53]  eta: 0:00:48  loss: 2.5552 (2.5552)  acc1: 52.6042 (52.6042)  acc5: 71.3542 (71.3542)  time: 0.9093  data: 0.8657  max mem: 4456
+Test:  [10/53]  eta: 0:00:06  loss: 3.3492 (3.1691)  acc1: 40.6250 (42.1402)  acc5: 71.3542 (68.8920)  time: 0.1437  data: 0.1023  max mem: 4456
+Test:  [20/53]  eta: 0:00:03  loss: 3.2398 (3.1338)  acc1: 45.8333 (44.4444)  acc5: 69.7917 (70.2629)  time: 0.0590  data: 0.0171  max mem: 4456
+Test:  [30/53]  eta: 0:00:01  loss: 3.1818 (3.1843)  acc1: 45.8333 (44.0356)  acc5: 69.7917 (70.0437)  time: 0.0473  data: 0.0045  max mem: 4456
+Test:  [40/53]  eta: 0:00:00  loss: 3.3966 (3.2339)  acc1: 40.6250 (43.9278)  acc5: 66.6667 (69.0422)  time: 0.0429  data: 0.0005  max mem: 4456
+Test:  [50/53]  eta: 0:00:00  loss: 3.5135 (3.2445)  acc1: 40.6250 (44.2504)  acc5: 65.1042 (69.3321)  time: 0.0408  data: 0.0002  max mem: 4456
+Test:  [52/53]  eta: 0:00:00  loss: 3.3966 (3.2192)  acc1: 42.1875 (44.2700)  acc5: 71.8750 (69.5400)  time: 0.0389  data: 0.0001  max mem: 4456
+Test: Total time: 0:00:03 (0.0654 s / it)
+* Acc@1 44.270 Acc@5 69.540 loss 3.219
+Accuracy of the network on the 10000 test images: 44.3%
+Saving checkpoint to checkpoints/repvit_m0_9/2025_06_03_20_40_58/checkpoint_3.pth
+Max accuracy: 55.14%
+Epoch: [4]  [  0/780]  eta: 0:14:36  lr: 0.001500  loss: 4.6948 (4.6948)  time: 1.1237  data: 0.9614  max mem: 4456
+Epoch: [4]  [100/780]  eta: 0:01:38  lr: 0.001500  loss: 4.9239 (4.7820)  time: 0.1352  data: 0.0002  max mem: 4456
+Epoch: [4]  [200/780]  eta: 0:01:21  lr: 0.001500  loss: 4.9123 (4.8287)  time: 0.1351  data: 0.0002  max mem: 4456
+Epoch: [4]  [300/780]  eta: 0:01:06  lr: 0.001500  loss: 4.9672 (4.8399)  time: 0.1353  data: 0.0002  max mem: 4456
+Epoch: [4]  [400/780]  eta: 0:00:52  lr: 0.001500  loss: 4.8323 (4.8359)  time: 0.1348  data: 0.0002  max mem: 4456
+Epoch: [4]  [500/780]  eta: 0:00:38  lr: 0.001500  loss: 4.8726 (4.8406)  time: 0.1350  data: 0.0002  max mem: 4456
+Epoch: [4]  [600/780]  eta: 0:00:24  lr: 0.001500  loss: 4.8032 (4.8409)  time: 0.1348  data: 0.0002  max mem: 4456
+Epoch: [4]  [700/780]  eta: 0:00:10  lr: 0.001500  loss: 4.8433 (4.8400)  time: 0.1347  data: 0.0002  max mem: 4456
+Epoch: [4]  [779/780]  eta: 0:00:00  lr: 0.001500  loss: 4.6968 (4.8353)  time: 0.1322  data: 0.0001  max mem: 4456
+Epoch: [4] Total time: 0:01:46 (0.1368 s / it)
+Averaged stats: lr: 0.001500  loss: 4.6968 (4.8353)
+Test:  [ 0/53]  eta: 0:00:48  loss: 2.9379 (2.9379)  acc1: 49.4792 (49.4792)  acc5: 59.3750 (59.3750)  time: 0.9184  data: 0.8736  max mem: 4456
+Test:  [10/53]  eta: 0:00:06  loss: 3.4356 (3.4357)  acc1: 40.1042 (37.5473)  acc5: 59.3750 (59.8485)  time: 0.1410  data: 0.0992  max mem: 4456
+Test:  [20/53]  eta: 0:00:03  loss: 3.4356 (3.4482)  acc1: 35.4167 (38.0456)  acc5: 57.8125 (60.7143)  time: 0.0583  data: 0.0167  max mem: 4456
+Test:  [30/53]  eta: 0:00:01  loss: 3.4913 (3.4817)  acc1: 35.4167 (37.5840)  acc5: 57.8125 (60.7359)  time: 0.0485  data: 0.0062  max mem: 4456
+Test:  [40/53]  eta: 0:00:00  loss: 3.7627 (3.5521)  acc1: 31.7708 (36.0518)  acc5: 55.7292 (59.3750)  time: 0.0425  data: 0.0005  max mem: 4456
+Test:  [50/53]  eta: 0:00:00  loss: 3.6498 (3.5634)  acc1: 31.7708 (35.5188)  acc5: 56.2500 (59.1401)  time: 0.0405  data: 0.0002  max mem: 4456
+Test:  [52/53]  eta: 0:00:00  loss: 3.6283 (3.5514)  acc1: 31.2500 (35.3500)  acc5: 56.7708 (59.0600)  time: 0.0385  data: 0.0001  max mem: 4456
+Test: Total time: 0:00:03 (0.0653 s / it)
+* Acc@1 35.350 Acc@5 59.060 loss 3.551
+Accuracy of the network on the 10000 test images: 35.4%
+Saving checkpoint to checkpoints/repvit_m0_9/2025_06_03_20_40_58/checkpoint_4.pth
+Max accuracy: 55.14%
+Epoch: [5]  [  0/780]  eta: 0:13:19  lr: 0.002000  loss: 4.8936 (4.8936)  time: 1.0249  data: 0.8532  max mem: 4456
+Epoch: [5]  [100/780]  eta: 0:01:40  lr: 0.002000  loss: 4.9924 (4.9111)  time: 0.1371  data: 0.0002  max mem: 4456
+Epoch: [5]  [200/780]  eta: 0:01:22  lr: 0.002000  loss: 4.9618 (4.9603)  time: 0.1385  data: 0.0002  max mem: 4456
+Epoch: [5]  [300/780]  eta: 0:01:07  lr: 0.002000  loss: 4.9503 (4.9641)  time: 0.1380  data: 0.0002  max mem: 4456
+Epoch: [5]  [400/780]  eta: 0:00:53  lr: 0.002000  loss: 4.9992 (4.9682)  time: 0.1387  data: 0.0002  max mem: 4456
+Epoch: [5]  [500/780]  eta: 0:00:39  lr: 0.002000  loss: 4.9939 (4.9693)  time: 0.1384  data: 0.0002  max mem: 4456
+Epoch: [5]  [600/780]  eta: 0:00:25  lr: 0.002000  loss: 4.8849 (4.9669)  time: 0.1383  data: 0.0002  max mem: 4456
+Epoch: [5]  [700/780]  eta: 0:00:11  lr: 0.002000  loss: 4.9657 (4.9685)  time: 0.1379  data: 0.0002  max mem: 4456
+Epoch: [5]  [779/780]  eta: 0:00:00  lr: 0.002000  loss: 4.9838 (4.9707)  time: 0.1350  data: 0.0001  max mem: 4456
+Epoch: [5] Total time: 0:01:48 (0.1397 s / it)
+Averaged stats: lr: 0.002000  loss: 4.9838 (4.9707)
+Test:  [ 0/53]  eta: 0:00:45  loss: 3.5092 (3.5092)  acc1: 36.4583 (36.4583)  acc5: 51.0417 (51.0417)  time: 0.8624  data: 0.8190  max mem: 4456
+Test:  [10/53]  eta: 0:00:06  loss: 4.0934 (4.0923)  acc1: 29.6875 (25.3314)  acc5: 37.5000 (41.9508)  time: 0.1524  data: 0.1103  max mem: 4456
+Test:  [20/53]  eta: 0:00:03  loss: 3.7658 (3.9567)  acc1: 26.5625 (27.2321)  acc5: 47.9167 (45.6597)  time: 0.0622  data: 0.0200  max mem: 4456
+Test:  [30/53]  eta: 0:00:01  loss: 3.7658 (3.9395)  acc1: 26.0417 (26.2265)  acc5: 53.6458 (46.3206)  time: 0.0433  data: 0.0006  max mem: 4456
+Test:  [40/53]  eta: 0:00:00  loss: 4.0459 (3.9897)  acc1: 21.8750 (25.1397)  acc5: 44.7917 (45.4395)  time: 0.0425  data: 0.0005  max mem: 4456
+Test:  [50/53]  eta: 0:00:00  loss: 4.0822 (3.9792)  acc1: 21.3542 (25.6025)  acc5: 39.5833 (45.1287)  time: 0.0402  data: 0.0002  max mem: 4456
+Test:  [52/53]  eta: 0:00:00  loss: 4.0459 (3.9631)  acc1: 23.4375 (25.6000)  acc5: 44.7917 (45.2300)  time: 0.0383  data: 0.0001  max mem: 4456
+Test: Total time: 0:00:03 (0.0655 s / it)
+* Acc@1 25.600 Acc@5 45.230 loss 3.963
+Accuracy of the network on the 10000 test images: 25.6%
+Saving checkpoint to checkpoints/repvit_m0_9/2025_06_03_20_40_58/checkpoint_5.pth
+Max accuracy: 55.14%
+Epoch: [6]  [  0/780]  eta: 0:11:12  lr: 0.002333  loss: 4.8387 (4.8387)  time: 0.8615  data: 0.7036  max mem: 4456
+Epoch: [6]  [100/780]  eta: 0:01:39  lr: 0.002333  loss: 5.0252 (5.0113)  time: 0.1378  data: 0.0002  max mem: 4456
+Epoch: [6]  [200/780]  eta: 0:01:22  lr: 0.002333  loss: 4.9263 (5.0238)  time: 0.1388  data: 0.0002  max mem: 4456
+Epoch: [6]  [300/780]  eta: 0:01:07  lr: 0.002333  loss: 5.0932 (5.0248)  time: 0.1379  data: 0.0002  max mem: 4456
+Epoch: [6]  [400/780]  eta: 0:00:53  lr: 0.002333  loss: 5.0201 (5.0228)  time: 0.1374  data: 0.0002  max mem: 4456
+Epoch: [6]  [500/780]  eta: 0:00:39  lr: 0.002333  loss: 5.0385 (5.0201)  time: 0.1433  data: 0.0002  max mem: 4456
+Epoch: [6]  [600/780]  eta: 0:00:25  lr: 0.002333  loss: 5.0694 (5.0212)  time: 0.1378  data: 0.0002  max mem: 4456
+Epoch: [6]  [700/780]  eta: 0:00:11  lr: 0.002333  loss: 4.9217 (5.0162)  time: 0.1385  data: 0.0002  max mem: 4456
+Epoch: [6]  [779/780]  eta: 0:00:00  lr: 0.002333  loss: 5.0130 (5.0098)  time: 0.1351  data: 0.0001  max mem: 4456
+Epoch: [6] Total time: 0:01:48 (0.1396 s / it)
+Averaged stats: lr: 0.002333  loss: 5.0130 (5.0098)
+Test:  [ 0/53]  eta: 0:00:47  loss: 3.8293 (3.8293)  acc1: 29.6875 (29.6875)  acc5: 53.1250 (53.1250)  time: 0.8949  data: 0.8504  max mem: 4456
+Test:  [10/53]  eta: 0:00:06  loss: 4.4413 (4.1716)  acc1: 17.7083 (21.4489)  acc5: 36.4583 (40.7197)  time: 0.1448  data: 0.1025  max mem: 4456
+Test:  [20/53]  eta: 0:00:03  loss: 4.4215 (4.2201)  acc1: 17.1875 (20.6597)  acc5: 35.9375 (39.8562)  time: 0.0565  data: 0.0142  max mem: 4456
+Test:  [30/53]  eta: 0:00:01  loss: 4.2175 (4.2265)  acc1: 17.7083 (20.4637)  acc5: 37.5000 (39.2137)  time: 0.0433  data: 0.0006  max mem: 4456
+Test:  [40/53]  eta: 0:00:00  loss: 4.5396 (4.3243)  acc1: 15.6250 (18.5849)  acc5: 32.2917 (36.7759)  time: 0.0423  data: 0.0004  max mem: 4456
+Test:  [50/53]  eta: 0:00:00  loss: 4.4016 (4.2635)  acc1: 18.2292 (19.6078)  acc5: 34.3750 (38.1842)  time: 0.0403  data: 0.0002  max mem: 4456
+Test:  [52/53]  eta: 0:00:00  loss: 4.2861 (4.2555)  acc1: 18.2292 (19.4400)  acc5: 35.9375 (38.0100)  time: 0.0385  data: 0.0001  max mem: 4456
+Test: Total time: 0:00:03 (0.0641 s / it)
+* Acc@1 19.440 Acc@5 38.010 loss 4.255
+Accuracy of the network on the 10000 test images: 19.4%
+Saving checkpoint to checkpoints/repvit_m0_9/2025_06_03_20_40_58/checkpoint_6.pth
+Max accuracy: 55.14%
+Epoch: [7]  [  0/780]  eta: 0:13:53  lr: 0.002262  loss: 5.1889 (5.1889)  time: 1.0681  data: 0.8934  max mem: 4456
+Epoch: [7]  [100/780]  eta: 0:01:40  lr: 0.002262  loss: 4.9300 (4.9487)  time: 0.1374  data: 0.0002  max mem: 4456
+Epoch: [7]  [200/780]  eta: 0:01:23  lr: 0.002262  loss: 4.9981 (4.9762)  time: 0.1381  data: 0.0002  max mem: 4456
+Epoch: [7]  [300/780]  eta: 0:01:08  lr: 0.002262  loss: 4.9784 (4.9713)  time: 0.1394  data: 0.0002  max mem: 4456
+Epoch: [7]  [400/780]  eta: 0:00:53  lr: 0.002262  loss: 4.9881 (4.9679)  time: 0.1379  data: 0.0002  max mem: 4456
+Epoch: [7]  [500/780]  eta: 0:00:39  lr: 0.002262  loss: 4.9990 (4.9639)  time: 0.1381  data: 0.0002  max mem: 4456
+Epoch: [7]  [600/780]  eta: 0:00:25  lr: 0.002262  loss: 4.9069 (4.9577)  time: 0.1381  data: 0.0002  max mem: 4456
+Epoch: [7]  [700/780]  eta: 0:00:11  lr: 0.002262  loss: 4.8563 (4.9504)  time: 0.1381  data: 0.0002  max mem: 4456
+Epoch: [7]  [779/780]  eta: 0:00:00  lr: 0.002262  loss: 4.8419 (4.9481)  time: 0.1342  data: 0.0001  max mem: 4456
+Epoch: [7] Total time: 0:01:49 (0.1398 s / it)
+Averaged stats: lr: 0.002262  loss: 4.8419 (4.9481)
+Test:  [ 0/53]  eta: 0:01:06  loss: 3.2090 (3.2090)  acc1: 43.2292 (43.2292)  acc5: 64.0625 (64.0625)  time: 1.2458  data: 1.2066  max mem: 4456
+Test:  [10/53]  eta: 0:00:06  loss: 3.8857 (3.8534)  acc1: 20.8333 (29.8295)  acc5: 46.8750 (46.5909)  time: 0.1573  data: 0.1151  max mem: 4456
+Test:  [20/53]  eta: 0:00:03  loss: 3.9884 (3.9136)  acc1: 20.8333 (27.1081)  acc5: 44.7917 (46.7262)  time: 0.0468  data: 0.0033  max mem: 4456
+Test:  [30/53]  eta: 0:00:01  loss: 3.9529 (3.9359)  acc1: 26.5625 (26.1425)  acc5: 44.7917 (46.1190)  time: 0.0465  data: 0.0008  max mem: 4456
+Test:  [40/53]  eta: 0:00:00  loss: 4.1523 (4.0030)  acc1: 22.3958 (24.9238)  acc5: 39.5833 (44.0041)  time: 0.0456  data: 0.0006  max mem: 4456
+Test:  [50/53]  eta: 0:00:00  loss: 4.0810 (3.9538)  acc1: 23.4375 (26.0110)  acc5: 39.5833 (45.3636)  time: 0.0420  data: 0.0002  max mem: 4456
+Test:  [52/53]  eta: 0:00:00  loss: 4.0732 (3.9490)  acc1: 27.0833 (25.8400)  acc5: 47.9167 (45.2700)  time: 0.0397  data: 0.0001  max mem: 4456
+Test: Total time: 0:00:03 (0.0685 s / it)
+* Acc@1 25.840 Acc@5 45.270 loss 3.949
+Accuracy of the network on the 10000 test images: 25.8%
+Saving checkpoint to checkpoints/repvit_m0_9/2025_06_03_20_40_58/checkpoint_7.pth
+Max accuracy: 55.14%
+Epoch: [8]  [  0/780]  eta: 0:12:18  lr: 0.002180  loss: 4.9374 (4.9374)  time: 0.9468  data: 0.7930  max mem: 4456
+Epoch: [8]  [100/780]  eta: 0:01:37  lr: 0.002180  loss: 4.9159 (4.9427)  time: 0.1355  data: 0.0002  max mem: 4456
+Epoch: [8]  [200/780]  eta: 0:01:21  lr: 0.002180  loss: 4.8495 (4.9256)  time: 0.1358  data: 0.0002  max mem: 4456
+Epoch: [8]  [300/780]  eta: 0:01:07  lr: 0.002180  loss: 4.9959 (4.9052)  time: 0.1471  data: 0.0003  max mem: 4456
+Epoch: [8]  [400/780]  eta: 0:00:53  lr: 0.002180  loss: 4.8630 (4.9019)  time: 0.1371  data: 0.0002  max mem: 4456
+Epoch: [8]  [500/780]  eta: 0:00:39  lr: 0.002180  loss: 4.8593 (4.9011)  time: 0.1376  data: 0.0002  max mem: 4456
+Epoch: [8]  [600/780]  eta: 0:00:25  lr: 0.002180  loss: 4.9362 (4.8961)  time: 0.1383  data: 0.0002  max mem: 4456
+Epoch: [8]  [700/780]  eta: 0:00:11  lr: 0.002180  loss: 4.8878 (4.8918)  time: 0.1351  data: 0.0002  max mem: 4456
+Epoch: [8]  [779/780]  eta: 0:00:00  lr: 0.002180  loss: 4.7147 (4.8871)  time: 0.1319  data: 0.0001  max mem: 4456
+Epoch: [8] Total time: 0:01:47 (0.1384 s / it)
+Averaged stats: lr: 0.002180  loss: 4.7147 (4.8871)
+Test:  [ 0/53]  eta: 0:01:02  loss: 3.3176 (3.3176)  acc1: 37.5000 (37.5000)  acc5: 54.6875 (54.6875)  time: 1.1801  data: 1.1413  max mem: 4456
+Test:  [10/53]  eta: 0:00:06  loss: 3.9027 (3.8431)  acc1: 28.1250 (27.2254)  acc5: 45.8333 (47.2064)  time: 0.1456  data: 0.1042  max mem: 4456
+Test:  [20/53]  eta: 0:00:03  loss: 3.9027 (3.8626)  acc1: 25.0000 (27.8274)  acc5: 45.8333 (48.4127)  time: 0.0441  data: 0.0018  max mem: 4456
+Test:  [30/53]  eta: 0:00:01  loss: 3.6943 (3.7985)  acc1: 27.0833 (28.9483)  acc5: 50.5208 (48.8071)  time: 0.0448  data: 0.0019  max mem: 4456
+Test:  [40/53]  eta: 0:00:00  loss: 3.9016 (3.8430)  acc1: 28.1250 (28.2520)  acc5: 44.7917 (47.3069)  time: 0.0422  data: 0.0004  max mem: 4456
+Test:  [50/53]  eta: 0:00:00  loss: 3.8849 (3.8066)  acc1: 28.6458 (29.0543)  acc5: 43.2292 (48.3150)  time: 0.0403  data: 0.0001  max mem: 4456
+Test:  [52/53]  eta: 0:00:00  loss: 3.7537 (3.7930)  acc1: 26.0417 (28.8000)  acc5: 43.2292 (48.2300)  time: 0.0385  data: 0.0001  max mem: 4456
+Test: Total time: 0:00:03 (0.0648 s / it)
+* Acc@1 28.800 Acc@5 48.230 loss 3.793
+Accuracy of the network on the 10000 test images: 28.8%
+Saving checkpoint to checkpoints/repvit_m0_9/2025_06_03_20_40_58/checkpoint_8.pth
+Max accuracy: 55.14%
+Epoch: [9]  [  0/780]  eta: 0:14:15  lr: 0.002088  loss: 4.8553 (4.8553)  time: 1.0962  data: 0.9267  max mem: 4456
+Epoch: [9]  [100/780]  eta: 0:01:38  lr: 0.002088  loss: 4.7905 (4.8321)  time: 0.1355  data: 0.0002  max mem: 4456
+Epoch: [9]  [200/780]  eta: 0:01:21  lr: 0.002088  loss: 4.8430 (4.8577)  time: 0.1353  data: 0.0002  max mem: 4456
+Epoch: [9]  [300/780]  eta: 0:01:06  lr: 0.002088  loss: 4.9837 (4.8613)  time: 0.1409  data: 0.0002  max mem: 4456
+Epoch: [9]  [400/780]  eta: 0:00:52  lr: 0.002088  loss: 4.8103 (4.8559)  time: 0.1352  data: 0.0002  max mem: 4456
+Epoch: [9]  [500/780]  eta: 0:00:38  lr: 0.002088  loss: 4.7890 (4.8464)  time: 0.1349  data: 0.0002  max mem: 4456
+Epoch: [9]  [600/780]  eta: 0:00:24  lr: 0.002088  loss: 4.7518 (4.8393)  time: 0.1354  data: 0.0002  max mem: 4456
+Epoch: [9]  [700/780]  eta: 0:00:10  lr: 0.002088  loss: 4.7286 (4.8383)  time: 0.1353  data: 0.0002  max mem: 4456
+Epoch: [9]  [779/780]  eta: 0:00:00  lr: 0.002088  loss: 4.7606 (4.8347)  time: 0.1328  data: 0.0001  max mem: 4456
+Epoch: [9] Total time: 0:01:46 (0.1370 s / it)
+Averaged stats: lr: 0.002088  loss: 4.7606 (4.8347)
+Test:  [ 0/53]  eta: 0:00:58  loss: 3.0742 (3.0742)  acc1: 47.3958 (47.3958)  acc5: 70.3125 (70.3125)  time: 1.0947  data: 1.0556  max mem: 4456
+Test:  [10/53]  eta: 0:00:06  loss: 4.3221 (3.8162)  acc1: 16.1458 (31.3920)  acc5: 42.1875 (49.4318)  time: 0.1563  data: 0.1156  max mem: 4456
+Test:  [20/53]  eta: 0:00:03  loss: 3.7344 (3.7033)  acc1: 28.1250 (31.8948)  acc5: 48.4375 (51.3393)  time: 0.0525  data: 0.0111  max mem: 4456
+Test:  [30/53]  eta: 0:00:01  loss: 3.7344 (3.7389)  acc1: 28.1250 (30.3091)  acc5: 49.4792 (50.5544)  time: 0.0431  data: 0.0006  max mem: 4456
+Test:  [40/53]  eta: 0:00:00  loss: 3.8957 (3.8046)  acc1: 21.8750 (28.9126)  acc5: 45.8333 (48.7424)  time: 0.0424  data: 0.0004  max mem: 4456
+Test:  [50/53]  eta: 0:00:00  loss: 3.8088 (3.7745)  acc1: 27.0833 (29.2790)  acc5: 47.3958 (49.3873)  time: 0.0404  data: 0.0001  max mem: 4456
+Test:  [52/53]  eta: 0:00:00  loss: 3.8087 (3.7686)  acc1: 27.6042 (29.1600)  acc5: 50.0000 (49.4400)  time: 0.0386  data: 0.0001  max mem: 4456
+Test: Total time: 0:00:03 (0.0663 s / it)
+* Acc@1 29.160 Acc@5 49.440 loss 3.769
+Accuracy of the network on the 10000 test images: 29.2%
+Saving checkpoint to checkpoints/repvit_m0_9/2025_06_03_20_40_58/checkpoint_9.pth
+Max accuracy: 55.14%
+Epoch: [10]  [  0/780]  eta: 0:15:23  lr: 0.001987  loss: 5.0981 (5.0981)  time: 1.1840  data: 1.0376  max mem: 4456
+Epoch: [10]  [100/780]  eta: 0:01:42  lr: 0.001987  loss: 4.9154 (4.8170)  time: 0.1390  data: 0.0002  max mem: 4456
+Epoch: [10]  [200/780]  eta: 0:01:23  lr: 0.001987  loss: 4.8098 (4.8052)  time: 0.1362  data: 0.0002  max mem: 4456
+Epoch: [10]  [300/780]  eta: 0:01:07  lr: 0.001987  loss: 4.9676 (4.8080)  time: 0.1362  data: 0.0002  max mem: 4456
+Epoch: [10]  [400/780]  eta: 0:00:53  lr: 0.001987  loss: 4.8530 (4.8000)  time: 0.1364  data: 0.0002  max mem: 4456
+Epoch: [10]  [500/780]  eta: 0:00:39  lr: 0.001987  loss: 4.8505 (4.7995)  time: 0.1361  data: 0.0002  max mem: 4456
+Epoch: [10]  [600/780]  eta: 0:00:25  lr: 0.001987  loss: 4.6870 (4.7961)  time: 0.1361  data: 0.0002  max mem: 4456
+Epoch: [10]  [700/780]  eta: 0:00:11  lr: 0.001987  loss: 4.8292 (4.7969)  time: 0.1367  data: 0.0002  max mem: 4456
+Epoch: [10]  [779/780]  eta: 0:00:00  lr: 0.001987  loss: 4.7731 (4.7992)  time: 0.1321  data: 0.0001  max mem: 4456
+Epoch: [10] Total time: 0:01:47 (0.1384 s / it)
+Averaged stats: lr: 0.001987  loss: 4.7731 (4.7992)
+Test:  [ 0/53]  eta: 0:00:48  loss: 3.3212 (3.3212)  acc1: 40.6250 (40.6250)  acc5: 60.9375 (60.9375)  time: 0.9240  data: 0.8793  max mem: 4456
+Test:  [10/53]  eta: 0:00:06  loss: 3.6427 (3.6043)  acc1: 31.2500 (32.4811)  acc5: 51.5625 (52.2727)  time: 0.1449  data: 0.1027  max mem: 4456
+Test:  [20/53]  eta: 0:00:03  loss: 3.4829 (3.5210)  acc1: 31.2500 (34.3006)  acc5: 54.6875 (54.2659)  time: 0.0584  data: 0.0159  max mem: 4456
+Test:  [30/53]  eta: 0:00:01  loss: 3.3734 (3.5248)  acc1: 34.3750 (34.2742)  acc5: 60.9375 (54.9395)  time: 0.0467  data: 0.0037  max mem: 4456
+Test:  [40/53]  eta: 0:00:00  loss: 3.6611 (3.5709)  acc1: 28.1250 (33.2190)  acc5: 49.4792 (53.5442)  time: 0.0431  data: 0.0005  max mem: 4456
+Test:  [50/53]  eta: 0:00:00  loss: 3.5582 (3.5450)  acc1: 33.3333 (33.6295)  acc5: 51.5625 (54.2586)  time: 0.0414  data: 0.0002  max mem: 4456
+Test:  [52/53]  eta: 0:00:00  loss: 3.5015 (3.5374)  acc1: 33.8542 (33.4800)  acc5: 52.0833 (54.4200)  time: 0.0394  data: 0.0001  max mem: 4456
+Test: Total time: 0:00:03 (0.0659 s / it)
+* Acc@1 33.480 Acc@5 54.420 loss 3.537
+Accuracy of the network on the 10000 test images: 33.5%
+Saving checkpoint to checkpoints/repvit_m0_9/2025_06_03_20_40_58/checkpoint_10.pth
+Max accuracy: 55.14%
+Epoch: [11]  [  0/780]  eta: 0:12:56  lr: 0.001878  loss: 4.7670 (4.7670)  time: 0.9961  data: 0.7991  max mem: 4456
+Epoch: [11]  [100/780]  eta: 0:01:39  lr: 0.001878  loss: 4.7534 (4.7507)  time: 0.1364  data: 0.0002  max mem: 4456
+Epoch: [11]  [200/780]  eta: 0:01:22  lr: 0.001878  loss: 4.8242 (4.7774)  time: 0.1365  data: 0.0002  max mem: 4456
+Epoch: [11]  [300/780]  eta: 0:01:07  lr: 0.001878  loss: 4.7484 (4.7664)  time: 0.1362  data: 0.0002  max mem: 4456
+Epoch: [11]  [400/780]  eta: 0:00:52  lr: 0.001878  loss: 4.8387 (4.7697)  time: 0.1357  data: 0.0002  max mem: 4456
+Epoch: [11]  [500/780]  eta: 0:00:38  lr: 0.001878  loss: 4.8680 (4.7598)  time: 0.1363  data: 0.0002  max mem: 4456
+Epoch: [11]  [600/780]  eta: 0:00:24  lr: 0.001878  loss: 4.8108 (4.7572)  time: 0.1366  data: 0.0002  max mem: 4456
+Epoch: [11]  [700/780]  eta: 0:00:11  lr: 0.001878  loss: 4.8896 (4.7609)  time: 0.1366  data: 0.0002  max mem: 4456
+Epoch: [11]  [779/780]  eta: 0:00:00  lr: 0.001878  loss: 4.6049 (4.7559)  time: 0.1334  data: 0.0001  max mem: 4456
+Epoch: [11] Total time: 0:01:47 (0.1380 s / it)
+Averaged stats: lr: 0.001878  loss: 4.6049 (4.7559)
+Test:  [ 0/53]  eta: 0:01:01  loss: 2.6633 (2.6633)  acc1: 55.7292 (55.7292)  acc5: 71.8750 (71.8750)  time: 1.1685  data: 1.1291  max mem: 4456
+Test:  [10/53]  eta: 0:00:06  loss: 3.6829 (3.4251)  acc1: 33.3333 (37.5947)  acc5: 57.8125 (55.9186)  time: 0.1578  data: 0.1160  max mem: 4456
+Test:  [20/53]  eta: 0:00:03  loss: 3.6829 (3.4696)  acc1: 30.2083 (35.7391)  acc5: 56.2500 (56.0020)  time: 0.0494  data: 0.0076  max mem: 4456
+Test:  [30/53]  eta: 0:00:01  loss: 3.4916 (3.4592)  acc1: 32.8125 (35.2655)  acc5: 56.2500 (56.9556)  time: 0.0433  data: 0.0006  max mem: 4456
+Test:  [40/53]  eta: 0:00:00  loss: 3.5962 (3.4873)  acc1: 32.8125 (35.0229)  acc5: 51.5625 (55.5005)  time: 0.0433  data: 0.0005  max mem: 4456
+Test:  [50/53]  eta: 0:00:00  loss: 3.5962 (3.5085)  acc1: 31.7708 (34.7324)  acc5: 50.5208 (55.1777)  time: 0.0410  data: 0.0002  max mem: 4456
+Test:  [52/53]  eta: 0:00:00  loss: 3.5150 (3.5209)  acc1: 31.2500 (34.4100)  acc5: 51.0417 (55.0300)  time: 0.0393  data: 0.0001  max mem: 4456
+Test: Total time: 0:00:03 (0.0669 s / it)
+* Acc@1 34.410 Acc@5 55.030 loss 3.521
+Accuracy of the network on the 10000 test images: 34.4%
+Saving checkpoint to checkpoints/repvit_m0_9/2025_06_03_20_40_58/checkpoint_11.pth
+Max accuracy: 55.14%
+Epoch: [12]  [  0/780]  eta: 0:11:11  lr: 0.001761  loss: 4.9197 (4.9197)  time: 0.8612  data: 0.6848  max mem: 4456
+Epoch: [12]  [100/780]  eta: 0:01:37  lr: 0.001761  loss: 4.6211 (4.7474)  time: 0.1362  data: 0.0002  max mem: 4456
+Epoch: [12]  [200/780]  eta: 0:01:21  lr: 0.001761  loss: 4.6687 (4.7404)  time: 0.1364  data: 0.0002  max mem: 4456
+Epoch: [12]  [300/780]  eta: 0:01:06  lr: 0.001761  loss: 4.7520 (4.7286)  time: 0.1359  data: 0.0002  max mem: 4456
+Epoch: [12]  [400/780]  eta: 0:00:52  lr: 0.001761  loss: 4.5643 (4.7326)  time: 0.1364  data: 0.0002  max mem: 4456
+Epoch: [12]  [500/780]  eta: 0:00:38  lr: 0.001761  loss: 4.7382 (4.7251)  time: 0.1362  data: 0.0002  max mem: 4456
+Epoch: [12]  [600/780]  eta: 0:00:24  lr: 0.001761  loss: 4.6892 (4.7221)  time: 0.1360  data: 0.0002  max mem: 4456
+Epoch: [12]  [700/780]  eta: 0:00:11  lr: 0.001761  loss: 4.8125 (4.7249)  time: 0.1394  data: 0.0002  max mem: 4456
+Epoch: [12]  [779/780]  eta: 0:00:00  lr: 0.001761  loss: 4.6719 (4.7251)  time: 0.1329  data: 0.0001  max mem: 4456
+Epoch: [12] Total time: 0:01:47 (0.1379 s / it)
+Averaged stats: lr: 0.001761  loss: 4.6719 (4.7251)
+Test:  [ 0/53]  eta: 0:00:58  loss: 2.6769 (2.6769)  acc1: 51.5625 (51.5625)  acc5: 64.5833 (64.5833)  time: 1.0985  data: 1.0576  max mem: 4456
+Test:  [10/53]  eta: 0:00:06  loss: 3.4022 (3.4938)  acc1: 36.4583 (37.4527)  acc5: 64.5833 (56.9602)  time: 0.1566  data: 0.1146  max mem: 4456
+Test:  [20/53]  eta: 0:00:03  loss: 3.3814 (3.4778)  acc1: 34.8958 (37.5496)  acc5: 59.8958 (57.5149)  time: 0.0523  data: 0.0104  max mem: 4456
+Test:  [30/53]  eta: 0:00:01  loss: 3.3814 (3.4756)  acc1: 34.8958 (37.8192)  acc5: 59.8958 (58.0645)  time: 0.0428  data: 0.0005  max mem: 4456
+Test:  [40/53]  eta: 0:00:00  loss: 3.6316 (3.5152)  acc1: 31.7708 (37.0427)  acc5: 53.6458 (56.3008)  time: 0.0421  data: 0.0004  max mem: 4456
+Test:  [50/53]  eta: 0:00:00  loss: 3.3233 (3.4512)  acc1: 38.5417 (37.8166)  acc5: 56.7708 (57.7819)  time: 0.0402  data: 0.0002  max mem: 4456
+Test:  [52/53]  eta: 0:00:00  loss: 3.3053 (3.4567)  acc1: 40.1042 (37.4800)  acc5: 62.5000 (57.8800)  time: 0.0384  data: 0.0001  max mem: 4456
+Test: Total time: 0:00:03 (0.0663 s / it)
+* Acc@1 37.480 Acc@5 57.880 loss 3.457
+Accuracy of the network on the 10000 test images: 37.5%
+Saving checkpoint to checkpoints/repvit_m0_9/2025_06_03_20_40_58/checkpoint_12.pth
+Max accuracy: 55.14%
+Epoch: [13]  [  0/780]  eta: 0:13:16  lr: 0.001640  loss: 4.8534 (4.8534)  time: 1.0213  data: 0.8212  max mem: 4456
+Epoch: [13]  [100/780]  eta: 0:01:40  lr: 0.001640  loss: 4.5634 (4.6762)  time: 0.1383  data: 0.0002  max mem: 4456
+Epoch: [13]  [200/780]  eta: 0:01:23  lr: 0.001640  loss: 4.6940 (4.7062)  time: 0.1386  data: 0.0002  max mem: 4456
+Epoch: [13]  [300/780]  eta: 0:01:08  lr: 0.001640  loss: 4.5398 (4.6822)  time: 0.1396  data: 0.0002  max mem: 4456
+Epoch: [13]  [400/780]  eta: 0:00:53  lr: 0.001640  loss: 4.4589 (4.6803)  time: 0.1373  data: 0.0002  max mem: 4456
+Epoch: [13]  [500/780]  eta: 0:00:39  lr: 0.001640  loss: 4.8080 (4.6724)  time: 0.1377  data: 0.0002  max mem: 4456
+Epoch: [13]  [600/780]  eta: 0:00:25  lr: 0.001640  loss: 4.7015 (4.6727)  time: 0.1377  data: 0.0002  max mem: 4456
+Epoch: [13]  [700/780]  eta: 0:00:11  lr: 0.001640  loss: 4.7538 (4.6716)  time: 0.1387  data: 0.0002  max mem: 4456
+Epoch: [13]  [779/780]  eta: 0:00:00  lr: 0.001640  loss: 4.6991 (4.6717)  time: 0.1348  data: 0.0001  max mem: 4456
+Epoch: [13] Total time: 0:01:49 (0.1399 s / it)
+Averaged stats: lr: 0.001640  loss: 4.6991 (4.6717)
+Test:  [ 0/53]  eta: 0:00:57  loss: 2.8273 (2.8273)  acc1: 45.8333 (45.8333)  acc5: 66.6667 (66.6667)  time: 1.0819  data: 1.0413  max mem: 4456
+Test:  [10/53]  eta: 0:00:06  loss: 2.9751 (3.1569)  acc1: 45.8333 (42.0928)  acc5: 64.0625 (62.4527)  time: 0.1437  data: 0.1021  max mem: 4456
+Test:  [20/53]  eta: 0:00:03  loss: 3.3387 (3.2472)  acc1: 35.9375 (39.8314)  acc5: 59.8958 (60.1439)  time: 0.0490  data: 0.0068  max mem: 4456
+Test:  [30/53]  eta: 0:00:01  loss: 3.2526 (3.2649)  acc1: 38.0208 (38.6929)  acc5: 60.4167 (60.5007)  time: 0.0460  data: 0.0030  max mem: 4456
+Test:  [40/53]  eta: 0:00:00  loss: 3.2526 (3.3163)  acc1: 39.0625 (37.9065)  acc5: 55.2083 (59.1590)  time: 0.0425  data: 0.0004  max mem: 4456
+Test:  [50/53]  eta: 0:00:00  loss: 3.2282 (3.2898)  acc1: 39.0625 (38.4906)  acc5: 58.3333 (59.5588)  time: 0.0404  data: 0.0002  max mem: 4456
+Test:  [52/53]  eta: 0:00:00  loss: 3.1579 (3.2809)  acc1: 39.0625 (38.1700)  acc5: 58.8542 (59.5800)  time: 0.0387  data: 0.0001  max mem: 4456
+Test: Total time: 0:00:03 (0.0647 s / it)
+* Acc@1 38.170 Acc@5 59.580 loss 3.281
+Accuracy of the network on the 10000 test images: 38.2%
+Saving checkpoint to checkpoints/repvit_m0_9/2025_06_03_20_40_58/checkpoint_13.pth
+Max accuracy: 55.14%
+Epoch: [14]  [  0/780]  eta: 0:13:50  lr: 0.001514  loss: 4.3162 (4.3162)  time: 1.0651  data: 0.8980  max mem: 4456
+Epoch: [14]  [100/780]  eta: 0:01:39  lr: 0.001514  loss: 4.7340 (4.6741)  time: 0.1376  data: 0.0002  max mem: 4456
+Epoch: [14]  [200/780]  eta: 0:01:22  lr: 0.001514  loss: 4.5949 (4.6674)  time: 0.1376  data: 0.0002  max mem: 4456
+Epoch: [14]  [300/780]  eta: 0:01:07  lr: 0.001514  loss: 4.6813 (4.6662)  time: 0.1384  data: 0.0002  max mem: 4456
+Epoch: [14]  [400/780]  eta: 0:00:53  lr: 0.001514  loss: 4.6029 (4.6617)  time: 0.1378  data: 0.0002  max mem: 4456
+Epoch: [14]  [500/780]  eta: 0:00:39  lr: 0.001514  loss: 4.7535 (4.6631)  time: 0.1379  data: 0.0002  max mem: 4456
+Epoch: [14]  [600/780]  eta: 0:00:25  lr: 0.001514  loss: 4.6472 (4.6657)  time: 0.1376  data: 0.0002  max mem: 4456
+Epoch: [14]  [700/780]  eta: 0:00:11  lr: 0.001514  loss: 4.5338 (4.6551)  time: 0.1378  data: 0.0002  max mem: 4456
+Epoch: [14]  [779/780]  eta: 0:00:00  lr: 0.001514  loss: 4.6014 (4.6518)  time: 0.1352  data: 0.0001  max mem: 4456
+Epoch: [14] Total time: 0:01:48 (0.1393 s / it)
+Averaged stats: lr: 0.001514  loss: 4.6014 (4.6518)
+Test:  [ 0/53]  eta: 0:00:57  loss: 3.0021 (3.0021)  acc1: 51.0417 (51.0417)  acc5: 64.0625 (64.0625)  time: 1.0818  data: 1.0412  max mem: 4456
+Test:  [10/53]  eta: 0:00:06  loss: 3.2731 (3.4483)  acc1: 35.9375 (38.2576)  acc5: 60.9375 (59.3277)  time: 0.1548  data: 0.1128  max mem: 4456
+Test:  [20/53]  eta: 0:00:03  loss: 3.2731 (3.2877)  acc1: 36.9792 (41.0714)  acc5: 60.9375 (61.7064)  time: 0.0523  data: 0.0102  max mem: 4456
+Test:  [30/53]  eta: 0:00:01  loss: 3.3037 (3.2869)  acc1: 38.5417 (40.9442)  acc5: 60.9375 (62.1640)  time: 0.0430  data: 0.0005  max mem: 4456
+Test:  [40/53]  eta: 0:00:00  loss: 3.3735 (3.3393)  acc1: 38.0208 (39.9009)  acc5: 59.8958 (60.3404)  time: 0.0425  data: 0.0004  max mem: 4456
+Test:  [50/53]  eta: 0:00:00  loss: 3.1674 (3.2879)  acc1: 41.1458 (40.5229)  acc5: 64.0625 (61.4481)  time: 0.0404  data: 0.0002  max mem: 4456
+Test:  [52/53]  eta: 0:00:00  loss: 3.1400 (3.2803)  acc1: 42.1875 (40.3200)  acc5: 66.1458 (61.7500)  time: 0.0386  data: 0.0001  max mem: 4456
+Test: Total time: 0:00:03 (0.0659 s / it)
+* Acc@1 40.320 Acc@5 61.750 loss 3.280
+Accuracy of the network on the 10000 test images: 40.3%
+Saving checkpoint to checkpoints/repvit_m0_9/2025_06_03_20_40_58/checkpoint_14.pth
+Max accuracy: 55.14%
+Epoch: [15]  [  0/780]  eta: 0:11:45  lr: 0.001385  loss: 4.8417 (4.8417)  time: 0.9041  data: 0.7301  max mem: 4456
+Epoch: [15]  [100/780]  eta: 0:01:39  lr: 0.001385  loss: 4.5186 (4.5718)  time: 0.1379  data: 0.0002  max mem: 4456
+Epoch: [15]  [200/780]  eta: 0:01:22  lr: 0.001385  loss: 4.6683 (4.5939)  time: 0.1375  data: 0.0002  max mem: 4456
+Epoch: [15]  [300/780]  eta: 0:01:07  lr: 0.001385  loss: 4.5047 (4.5857)  time: 0.1380  data: 0.0002  max mem: 4456
+Epoch: [15]  [400/780]  eta: 0:00:53  lr: 0.001385  loss: 4.3855 (4.5884)  time: 0.1378  data: 0.0002  max mem: 4456
+Epoch: [15]  [500/780]  eta: 0:00:39  lr: 0.001385  loss: 4.4221 (4.5743)  time: 0.1377  data: 0.0002  max mem: 4456
+Epoch: [15]  [600/780]  eta: 0:00:25  lr: 0.001385  loss: 4.6702 (4.5738)  time: 0.1381  data: 0.0002  max mem: 4456
+Epoch: [15]  [700/780]  eta: 0:00:11  lr: 0.001385  loss: 4.3906 (4.5680)  time: 0.1378  data: 0.0002  max mem: 4456
+Epoch: [15]  [779/780]  eta: 0:00:00  lr: 0.001385  loss: 4.5964 (4.5656)  time: 0.1346  data: 0.0001  max mem: 4456
+Epoch: [15] Total time: 0:01:48 (0.1392 s / it)
+Averaged stats: lr: 0.001385  loss: 4.5964 (4.5656)
+Test:  [ 0/53]  eta: 0:00:58  loss: 2.6084 (2.6084)  acc1: 54.1667 (54.1667)  acc5: 69.2708 (69.2708)  time: 1.1113  data: 1.0710  max mem: 4456
+Test:  [10/53]  eta: 0:00:06  loss: 3.3057 (3.1626)  acc1: 44.2708 (43.0398)  acc5: 63.0208 (63.4470)  time: 0.1479  data: 0.1058  max mem: 4456
+Test:  [20/53]  eta: 0:00:03  loss: 3.0460 (3.0836)  acc1: 44.2708 (44.9901)  acc5: 65.1042 (64.9802)  time: 0.0474  data: 0.0049  max mem: 4456
+Test:  [30/53]  eta: 0:00:01  loss: 3.0381 (3.0899)  acc1: 42.7083 (44.0692)  acc5: 65.1042 (65.0370)  time: 0.0435  data: 0.0006  max mem: 4456
+Test:  [40/53]  eta: 0:00:00  loss: 3.1723 (3.1539)  acc1: 41.1458 (42.6956)  acc5: 63.0208 (63.1987)  time: 0.0425  data: 0.0004  max mem: 4456
+Test:  [50/53]  eta: 0:00:00  loss: 3.1745 (3.1663)  acc1: 42.7083 (42.7083)  acc5: 62.5000 (62.8983)  time: 0.0404  data: 0.0002  max mem: 4456
+Test:  [52/53]  eta: 0:00:00  loss: 3.1745 (3.1620)  acc1: 42.7083 (42.4100)  acc5: 62.5000 (62.7500)  time: 0.0385  data: 0.0001  max mem: 4456
+Test: Total time: 0:00:03 (0.0646 s / it)
+* Acc@1 42.410 Acc@5 62.750 loss 3.162
+Accuracy of the network on the 10000 test images: 42.4%
+Saving checkpoint to checkpoints/repvit_m0_9/2025_06_03_20_40_58/checkpoint_15.pth
+Max accuracy: 55.14%
+Epoch: [16]  [  0/780]  eta: 0:14:25  lr: 0.001255  loss: 4.5802 (4.5802)  time: 1.1094  data: 0.9362  max mem: 4456
+Epoch: [16]  [100/780]  eta: 0:01:40  lr: 0.001255  loss: 4.6202 (4.5649)  time: 0.1373  data: 0.0002  max mem: 4456
+Epoch: [16]  [200/780]  eta: 0:01:23  lr: 0.001255  loss: 4.6777 (4.5812)  time: 0.1374  data: 0.0002  max mem: 4456
+Epoch: [16]  [300/780]  eta: 0:01:07  lr: 0.001255  loss: 4.6403 (4.5662)  time: 0.1376  data: 0.0002  max mem: 4456
+Epoch: [16]  [400/780]  eta: 0:00:53  lr: 0.001255  loss: 4.5230 (4.5653)  time: 0.1377  data: 0.0002  max mem: 4456
+Epoch: [16]  [500/780]  eta: 0:00:39  lr: 0.001255  loss: 4.6422 (4.5701)  time: 0.1372  data: 0.0002  max mem: 4456
+Epoch: [16]  [600/780]  eta: 0:00:25  lr: 0.001255  loss: 4.4937 (4.5598)  time: 0.1373  data: 0.0002  max mem: 4456
+Epoch: [16]  [700/780]  eta: 0:00:11  lr: 0.001255  loss: 4.5174 (4.5574)  time: 0.1384  data: 0.0002  max mem: 4456
+Epoch: [16]  [779/780]  eta: 0:00:00  lr: 0.001255  loss: 4.2824 (4.5525)  time: 0.1356  data: 0.0001  max mem: 4456
+Epoch: [16] Total time: 0:01:48 (0.1395 s / it)
+Averaged stats: lr: 0.001255  loss: 4.2824 (4.5525)
+Test:  [ 0/53]  eta: 0:01:03  loss: 2.5452 (2.5452)  acc1: 55.2083 (55.2083)  acc5: 63.5417 (63.5417)  time: 1.1966  data: 1.1561  max mem: 4456
+Test:  [10/53]  eta: 0:00:06  loss: 3.3684 (3.0536)  acc1: 45.3125 (47.4432)  acc5: 64.5833 (66.3352)  time: 0.1477  data: 0.1055  max mem: 4456
+Test:  [20/53]  eta: 0:00:03  loss: 3.3218 (3.0229)  acc1: 42.1875 (46.5526)  acc5: 64.0625 (65.9722)  time: 0.0443  data: 0.0015  max mem: 4456
+Test:  [30/53]  eta: 0:00:01  loss: 2.8864 (3.0389)  acc1: 42.1875 (45.7997)  acc5: 65.1042 (66.3811)  time: 0.0446  data: 0.0016  max mem: 4456
+Test:  [40/53]  eta: 0:00:00  loss: 2.8864 (3.0824)  acc1: 48.4375 (44.9568)  acc5: 66.6667 (65.1804)  time: 0.0423  data: 0.0004  max mem: 4456
+Test:  [50/53]  eta: 0:00:00  loss: 2.8253 (3.0730)  acc1: 44.7917 (45.1491)  acc5: 65.6250 (65.3901)  time: 0.0404  data: 0.0002  max mem: 4456
+Test:  [52/53]  eta: 0:00:00  loss: 2.8063 (3.0769)  acc1: 48.4375 (44.8700)  acc5: 66.6667 (65.3800)  time: 0.0386  data: 0.0001  max mem: 4456
+Test: Total time: 0:00:03 (0.0650 s / it)
+* Acc@1 44.870 Acc@5 65.380 loss 3.077
+Accuracy of the network on the 10000 test images: 44.9%
+Saving checkpoint to checkpoints/repvit_m0_9/2025_06_03_20_40_58/checkpoint_16.pth
+Max accuracy: 55.14%
+Epoch: [17]  [  0/780]  eta: 0:11:06  lr: 0.001125  loss: 4.4838 (4.4838)  time: 0.8550  data: 0.6830  max mem: 4456
+Epoch: [17]  [100/780]  eta: 0:01:39  lr: 0.001125  loss: 4.5820 (4.4662)  time: 0.1378  data: 0.0002  max mem: 4456
+Epoch: [17]  [200/780]  eta: 0:01:22  lr: 0.001125  loss: 4.6149 (4.4888)  time: 0.1379  data: 0.0002  max mem: 4456
+Epoch: [17]  [300/780]  eta: 0:01:07  lr: 0.001125  loss: 4.5567 (4.4779)  time: 0.1377  data: 0.0002  max mem: 4456
+Epoch: [17]  [400/780]  eta: 0:00:53  lr: 0.001125  loss: 4.1942 (4.4606)  time: 0.1376  data: 0.0002  max mem: 4456
+Epoch: [17]  [500/780]  eta: 0:00:39  lr: 0.001125  loss: 4.6654 (4.4708)  time: 0.1387  data: 0.0002  max mem: 4456
+Epoch: [17]  [600/780]  eta: 0:00:25  lr: 0.001125  loss: 4.5099 (4.4705)  time: 0.1388  data: 0.0002  max mem: 4456
+Epoch: [17]  [700/780]  eta: 0:00:11  lr: 0.001125  loss: 4.3335 (4.4653)  time: 0.1388  data: 0.0002  max mem: 4456
+Epoch: [17]  [779/780]  eta: 0:00:00  lr: 0.001125  loss: 4.3041 (4.4688)  time: 0.1390  data: 0.0001  max mem: 4456
+Epoch: [17] Total time: 0:01:49 (0.1399 s / it)
+Averaged stats: lr: 0.001125  loss: 4.3041 (4.4688)
+Test:  [ 0/53]  eta: 0:01:00  loss: 2.3203 (2.3203)  acc1: 58.3333 (58.3333)  acc5: 72.9167 (72.9167)  time: 1.1502  data: 1.1095  max mem: 4456
+Test:  [10/53]  eta: 0:00:06  loss: 3.0561 (3.0206)  acc1: 46.8750 (46.7803)  acc5: 72.9167 (68.4659)  time: 0.1555  data: 0.1134  max mem: 4456
+Test:  [20/53]  eta: 0:00:03  loss: 3.0464 (2.9969)  acc1: 46.8750 (47.1478)  acc5: 70.8333 (68.4276)  time: 0.0491  data: 0.0071  max mem: 4456
+Test:  [30/53]  eta: 0:00:01  loss: 2.7781 (2.9997)  acc1: 46.3542 (46.1358)  acc5: 68.7500 (68.3132)  time: 0.0428  data: 0.0005  max mem: 4456
+Test:  [40/53]  eta: 0:00:00  loss: 2.9738 (3.0650)  acc1: 45.8333 (45.0330)  acc5: 63.0208 (66.2602)  time: 0.0422  data: 0.0004  max mem: 4456
+Test:  [50/53]  eta: 0:00:00  loss: 3.1072 (3.0459)  acc1: 43.7500 (45.6495)  acc5: 63.5417 (66.8199)  time: 0.0402  data: 0.0002  max mem: 4456
+Test:  [52/53]  eta: 0:00:00  loss: 3.0881 (3.0320)  acc1: 46.8750 (45.5400)  acc5: 67.7083 (66.8100)  time: 0.0385  data: 0.0001  max mem: 4456
+Test: Total time: 0:00:03 (0.0659 s / it)
+* Acc@1 45.540 Acc@5 66.810 loss 3.032
+Accuracy of the network on the 10000 test images: 45.5%
+Saving checkpoint to checkpoints/repvit_m0_9/2025_06_03_20_40_58/checkpoint_17.pth
+Max accuracy: 55.14%
+Epoch: [18]  [  0/780]  eta: 0:14:30  lr: 0.000996  loss: 3.7997 (3.7997)  time: 1.1164  data: 0.9496  max mem: 4456
+Epoch: [18]  [100/780]  eta: 0:01:40  lr: 0.000996  loss: 4.5065 (4.4738)  time: 0.1378  data: 0.0002  max mem: 4456
+Epoch: [18]  [200/780]  eta: 0:01:23  lr: 0.000996  loss: 4.4949 (4.4538)  time: 0.1377  data: 0.0002  max mem: 4456
+Epoch: [18]  [300/780]  eta: 0:01:07  lr: 0.000996  loss: 4.4802 (4.4426)  time: 0.1373  data: 0.0002  max mem: 4456
+Epoch: [18]  [400/780]  eta: 0:00:53  lr: 0.000996  loss: 4.5612 (4.4498)  time: 0.1368  data: 0.0002  max mem: 4456
+Epoch: [18]  [500/780]  eta: 0:00:39  lr: 0.000996  loss: 4.5458 (4.4569)  time: 0.1378  data: 0.0002  max mem: 4456
+Epoch: [18]  [600/780]  eta: 0:00:25  lr: 0.000996  loss: 4.3380 (4.4482)  time: 0.1378  data: 0.0002  max mem: 4456
+Epoch: [18]  [700/780]  eta: 0:00:11  lr: 0.000996  loss: 4.5115 (4.4338)  time: 0.1375  data: 0.0002  max mem: 4456
+Epoch: [18]  [779/780]  eta: 0:00:00  lr: 0.000996  loss: 4.2766 (4.4274)  time: 0.1350  data: 0.0001  max mem: 4456
+Epoch: [18] Total time: 0:01:48 (0.1393 s / it)
+Averaged stats: lr: 0.000996  loss: 4.2766 (4.4274)
+Test:  [ 0/53]  eta: 0:01:18  loss: 2.2518 (2.2518)  acc1: 60.4167 (60.4167)  acc5: 78.1250 (78.1250)  time: 1.4846  data: 1.3435  max mem: 4456
+Test:  [10/53]  eta: 0:00:07  loss: 2.7663 (2.9280)  acc1: 48.4375 (48.2008)  acc5: 78.1250 (69.2708)  time: 0.1734  data: 0.1226  max mem: 4456
+Test:  [20/53]  eta: 0:00:03  loss: 2.7663 (2.9116)  acc1: 47.9167 (49.1815)  acc5: 69.2708 (69.0228)  time: 0.0429  data: 0.0005  max mem: 4456
+Test:  [30/53]  eta: 0:00:02  loss: 2.7468 (2.9113)  acc1: 47.9167 (49.7480)  acc5: 69.2708 (69.9093)  time: 0.0435  data: 0.0006  max mem: 4456
+Test:  [40/53]  eta: 0:00:01  loss: 2.9610 (2.9785)  acc1: 43.2292 (48.0564)  acc5: 67.7083 (67.9878)  time: 0.0426  data: 0.0005  max mem: 4456
+Test:  [50/53]  eta: 0:00:00  loss: 2.9610 (2.9644)  acc1: 46.8750 (48.1618)  acc5: 67.7083 (68.6172)  time: 0.0407  data: 0.0002  max mem: 4456
+Test:  [52/53]  eta: 0:00:00  loss: 2.8557 (2.9475)  acc1: 47.9167 (47.9400)  acc5: 73.4375 (68.7400)  time: 0.0390  data: 0.0001  max mem: 4456
+Test: Total time: 0:00:03 (0.0703 s / it)
+* Acc@1 47.940 Acc@5 68.740 loss 2.947
+Accuracy of the network on the 10000 test images: 47.9%
+Saving checkpoint to checkpoints/repvit_m0_9/2025_06_03_20_40_58/checkpoint_18.pth
+Max accuracy: 55.14%
+Epoch: [19]  [  0/780]  eta: 0:14:53  lr: 0.000870  loss: 3.7899 (3.7899)  time: 1.1449  data: 0.9655  max mem: 4456
+Epoch: [19]  [100/780]  eta: 0:01:40  lr: 0.000870  loss: 4.5366 (4.4083)  time: 0.1380  data: 0.0002  max mem: 4456
+Epoch: [19]  [200/780]  eta: 0:01:23  lr: 0.000870  loss: 4.5340 (4.4070)  time: 0.1378  data: 0.0002  max mem: 4456
+Epoch: [19]  [300/780]  eta: 0:01:08  lr: 0.000870  loss: 4.3854 (4.3771)  time: 0.1384  data: 0.0002  max mem: 4456
+Epoch: [19]  [400/780]  eta: 0:00:53  lr: 0.000870  loss: 4.2571 (4.3845)  time: 0.1383  data: 0.0002  max mem: 4456
+Epoch: [19]  [500/780]  eta: 0:00:39  lr: 0.000870  loss: 4.4274 (4.3857)  time: 0.1382  data: 0.0002  max mem: 4456
+Epoch: [19]  [600/780]  eta: 0:00:25  lr: 0.000870  loss: 4.3890 (4.3741)  time: 0.1384  data: 0.0002  max mem: 4456
+Epoch: [19]  [700/780]  eta: 0:00:11  lr: 0.000870  loss: 4.5259 (4.3681)  time: 0.1380  data: 0.0002  max mem: 4456
+Epoch: [19]  [779/780]  eta: 0:00:00  lr: 0.000870  loss: 4.1337 (4.3645)  time: 0.1351  data: 0.0001  max mem: 4456
+Epoch: [19] Total time: 0:01:49 (0.1400 s / it)
+Averaged stats: lr: 0.000870  loss: 4.1337 (4.3645)
+Test:  [ 0/53]  eta: 0:01:04  loss: 2.3560 (2.3560)  acc1: 61.4583 (61.4583)  acc5: 75.5208 (75.5208)  time: 1.2141  data: 1.1735  max mem: 4456
+Test:  [10/53]  eta: 0:00:06  loss: 2.3994 (2.7202)  acc1: 57.2917 (53.5511)  acc5: 75.5208 (73.0587)  time: 0.1524  data: 0.1103  max mem: 4456
+Test:  [20/53]  eta: 0:00:03  loss: 2.7191 (2.7406)  acc1: 51.5625 (53.2738)  acc5: 72.9167 (72.8423)  time: 0.0447  data: 0.0023  max mem: 4456
+Test:  [30/53]  eta: 0:00:01  loss: 2.7191 (2.7884)  acc1: 50.0000 (52.4026)  acc5: 72.9167 (72.6142)  time: 0.0434  data: 0.0005  max mem: 4456
+Test:  [40/53]  eta: 0:00:00  loss: 3.0357 (2.8824)  acc1: 47.9167 (50.4319)  acc5: 65.6250 (70.1601)  time: 0.0425  data: 0.0004  max mem: 4456
+Test:  [50/53]  eta: 0:00:00  loss: 2.8793 (2.8400)  acc1: 51.5625 (51.4502)  acc5: 65.6250 (70.5882)  time: 0.0404  data: 0.0002  max mem: 4456
+Test:  [52/53]  eta: 0:00:00  loss: 2.8445 (2.8223)  acc1: 51.5625 (51.3000)  acc5: 69.7917 (70.7400)  time: 0.0385  data: 0.0001  max mem: 4456
+Test: Total time: 0:00:03 (0.0656 s / it)
+* Acc@1 51.300 Acc@5 70.740 loss 2.822
+Accuracy of the network on the 10000 test images: 51.3%
+Saving checkpoint to checkpoints/repvit_m0_9/2025_06_03_20_40_58/checkpoint_19.pth
+Max accuracy: 55.14%
+Epoch: [20]  [  0/780]  eta: 0:14:02  lr: 0.000749  loss: 4.3299 (4.3299)  time: 1.0797  data: 0.9064  max mem: 4456
+Epoch: [20]  [100/780]  eta: 0:01:40  lr: 0.000749  loss: 4.2556 (4.3191)  time: 0.1375  data: 0.0002  max mem: 4456
+Epoch: [20]  [200/780]  eta: 0:01:23  lr: 0.000749  loss: 4.4912 (4.3320)  time: 0.1379  data: 0.0002  max mem: 4456
+Epoch: [20]  [300/780]  eta: 0:01:07  lr: 0.000749  loss: 4.3838 (4.3447)  time: 0.1378  data: 0.0002  max mem: 4456
+Epoch: [20]  [400/780]  eta: 0:00:53  lr: 0.000749  loss: 4.1622 (4.3195)  time: 0.1385  data: 0.0002  max mem: 4456
+Epoch: [20]  [500/780]  eta: 0:00:39  lr: 0.000749  loss: 4.1435 (4.3145)  time: 0.1379  data: 0.0002  max mem: 4456
+Epoch: [20]  [600/780]  eta: 0:00:25  lr: 0.000749  loss: 4.3060 (4.3117)  time: 0.1397  data: 0.0002  max mem: 4456
+Epoch: [20]  [700/780]  eta: 0:00:11  lr: 0.000749  loss: 4.1085 (4.2982)  time: 0.1436  data: 0.0002  max mem: 4456
+Epoch: [20]  [779/780]  eta: 0:00:00  lr: 0.000749  loss: 4.3307 (4.2957)  time: 0.1321  data: 0.0001  max mem: 4456
+Epoch: [20] Total time: 0:01:49 (0.1401 s / it)
+Averaged stats: lr: 0.000749  loss: 4.3307 (4.2957)
+Test:  [ 0/53]  eta: 0:01:01  loss: 2.2327 (2.2327)  acc1: 61.9792 (61.9792)  acc5: 82.2917 (82.2917)  time: 1.1660  data: 1.1268  max mem: 4456
+Test:  [10/53]  eta: 0:00:06  loss: 2.3060 (2.5912)  acc1: 61.9792 (58.3333)  acc5: 82.2917 (77.7936)  time: 0.1443  data: 0.1029  max mem: 4456
+Test:  [20/53]  eta: 0:00:03  loss: 2.5313 (2.7249)  acc1: 56.7708 (55.7044)  acc5: 72.3958 (74.8016)  time: 0.0481  data: 0.0064  max mem: 4456
+Test:  [30/53]  eta: 0:00:01  loss: 2.6984 (2.7385)  acc1: 53.6458 (55.3595)  acc5: 73.9583 (74.8320)  time: 0.0490  data: 0.0065  max mem: 4456
+Test:  [40/53]  eta: 0:00:00  loss: 2.6984 (2.8166)  acc1: 53.6458 (53.9888)  acc5: 72.3958 (72.8405)  time: 0.0427  data: 0.0004  max mem: 4456
+Test:  [50/53]  eta: 0:00:00  loss: 2.6096 (2.8153)  acc1: 54.6875 (54.0135)  acc5: 71.3542 (72.7124)  time: 0.0406  data: 0.0002  max mem: 4456
+Test:  [52/53]  eta: 0:00:00  loss: 2.6096 (2.8132)  acc1: 54.6875 (53.8300)  acc5: 72.9167 (72.7800)  time: 0.0387  data: 0.0001  max mem: 4456
+Test: Total time: 0:00:03 (0.0662 s / it)
+* Acc@1 53.830 Acc@5 72.780 loss 2.813
+Accuracy of the network on the 10000 test images: 53.8%
+Saving checkpoint to checkpoints/repvit_m0_9/2025_06_03_20_40_58/checkpoint_20.pth
+Max accuracy: 55.14%
+Epoch: [21]  [  0/780]  eta: 0:12:25  lr: 0.000633  loss: 3.5878 (3.5878)  time: 0.9560  data: 0.7980  max mem: 4456
+Epoch: [21]  [100/780]  eta: 0:01:38  lr: 0.000633  loss: 4.3921 (4.2474)  time: 0.1418  data: 0.0002  max mem: 4456
+Epoch: [21]  [200/780]  eta: 0:01:21  lr: 0.000633  loss: 4.3470 (4.2499)  time: 0.1356  data: 0.0002  max mem: 4456
+Epoch: [21]  [300/780]  eta: 0:01:06  lr: 0.000633  loss: 4.2018 (4.2466)  time: 0.1356  data: 0.0002  max mem: 4456
+Epoch: [21]  [400/780]  eta: 0:00:52  lr: 0.000633  loss: 4.4224 (4.2645)  time: 0.1361  data: 0.0002  max mem: 4456
+Epoch: [21]  [500/780]  eta: 0:00:38  lr: 0.000633  loss: 4.3125 (4.2649)  time: 0.1349  data: 0.0002  max mem: 4456
+Epoch: [21]  [600/780]  eta: 0:00:24  lr: 0.000633  loss: 4.0926 (4.2474)  time: 0.1354  data: 0.0002  max mem: 4456
+Epoch: [21]  [700/780]  eta: 0:00:10  lr: 0.000633  loss: 4.2459 (4.2307)  time: 0.1355  data: 0.0002  max mem: 4456
+Epoch: [21]  [779/780]  eta: 0:00:00  lr: 0.000633  loss: 4.3509 (4.2338)  time: 0.1323  data: 0.0001  max mem: 4456
+Epoch: [21] Total time: 0:01:47 (0.1374 s / it)
+Averaged stats: lr: 0.000633  loss: 4.3509 (4.2338)
+Test:  [ 0/53]  eta: 0:00:45  loss: 1.8220 (1.8220)  acc1: 68.2292 (68.2292)  acc5: 85.9375 (85.9375)  time: 0.8493  data: 0.8075  max mem: 4456
+Test:  [10/53]  eta: 0:00:06  loss: 2.4636 (2.5472)  acc1: 67.7083 (60.0379)  acc5: 81.2500 (78.5038)  time: 0.1432  data: 0.1018  max mem: 4456
+Test:  [20/53]  eta: 0:00:03  loss: 2.4636 (2.5908)  acc1: 56.7708 (58.3829)  acc5: 73.9583 (77.1577)  time: 0.0612  data: 0.0193  max mem: 4456
+Test:  [30/53]  eta: 0:00:01  loss: 2.6709 (2.6485)  acc1: 55.7292 (57.9469)  acc5: 73.9583 (76.8649)  time: 0.0465  data: 0.0040  max mem: 4456
+Test:  [40/53]  eta: 0:00:00  loss: 2.7769 (2.7350)  acc1: 55.2083 (55.9578)  acc5: 74.4792 (74.8730)  time: 0.0421  data: 0.0004  max mem: 4456
+Test:  [50/53]  eta: 0:00:00  loss: 2.7982 (2.7387)  acc1: 55.2083 (55.8619)  acc5: 74.4792 (74.5813)  time: 0.0402  data: 0.0001  max mem: 4456
+Test:  [52/53]  eta: 0:00:00  loss: 2.7982 (2.7243)  acc1: 55.2083 (55.7100)  acc5: 75.5208 (74.6700)  time: 0.0383  data: 0.0001  max mem: 4456
+Test: Total time: 0:00:03 (0.0647 s / it)
+* Acc@1 55.710 Acc@5 74.670 loss 2.724
+Accuracy of the network on the 10000 test images: 55.7%
+Saving checkpoint to checkpoints/repvit_m0_9/2025_06_03_20_40_58/checkpoint_21.pth
+Max accuracy: 55.71%
+Epoch: [22]  [  0/780]  eta: 0:14:51  lr: 0.000523  loss: 4.6191 (4.6191)  time: 1.1427  data: 0.9927  max mem: 4456
+Epoch: [22]  [100/780]  eta: 0:01:38  lr: 0.000523  loss: 4.3879 (4.1673)  time: 0.1350  data: 0.0002  max mem: 4456
+Epoch: [22]  [200/780]  eta: 0:01:21  lr: 0.000523  loss: 4.1299 (4.1848)  time: 0.1351  data: 0.0002  max mem: 4456
+Epoch: [22]  [300/780]  eta: 0:01:06  lr: 0.000523  loss: 3.9757 (4.1733)  time: 0.1351  data: 0.0002  max mem: 4456
+Epoch: [22]  [400/780]  eta: 0:00:52  lr: 0.000523  loss: 3.9032 (4.1759)  time: 0.1352  data: 0.0002  max mem: 4456
+Epoch: [22]  [500/780]  eta: 0:00:38  lr: 0.000523  loss: 4.1950 (4.1803)  time: 0.1349  data: 0.0002  max mem: 4456
+Epoch: [22]  [600/780]  eta: 0:00:24  lr: 0.000523  loss: 4.3107 (4.1721)  time: 0.1351  data: 0.0002  max mem: 4456
+Epoch: [22]  [700/780]  eta: 0:00:10  lr: 0.000523  loss: 4.0651 (4.1561)  time: 0.1355  data: 0.0002  max mem: 4456
+Epoch: [22]  [779/780]  eta: 0:00:00  lr: 0.000523  loss: 3.9713 (4.1582)  time: 0.1321  data: 0.0001  max mem: 4456
+Epoch: [22] Total time: 0:01:46 (0.1369 s / it)
+Averaged stats: lr: 0.000523  loss: 3.9713 (4.1582)
+Test:  [ 0/53]  eta: 0:00:42  loss: 2.0538 (2.0538)  acc1: 70.3125 (70.3125)  acc5: 85.4167 (85.4167)  time: 0.7957  data: 0.7535  max mem: 4456
+Test:  [10/53]  eta: 0:00:06  loss: 2.0538 (2.3544)  acc1: 70.3125 (63.7784)  acc5: 84.3750 (81.1080)  time: 0.1422  data: 0.1012  max mem: 4456
+Test:  [20/53]  eta: 0:00:03  loss: 2.4126 (2.4507)  acc1: 58.3333 (61.2599)  acc5: 77.6042 (79.9851)  time: 0.0637  data: 0.0222  max mem: 4456
+Test:  [30/53]  eta: 0:00:01  loss: 2.5921 (2.5173)  acc1: 55.2083 (59.7110)  acc5: 77.6042 (79.6707)  time: 0.0470  data: 0.0045  max mem: 4456
+Test:  [40/53]  eta: 0:00:00  loss: 2.5921 (2.5975)  acc1: 55.2083 (58.3460)  acc5: 78.1250 (77.8074)  time: 0.0426  data: 0.0004  max mem: 4456
+Test:  [50/53]  eta: 0:00:00  loss: 2.5198 (2.5965)  acc1: 60.9375 (58.4661)  acc5: 78.1250 (77.7574)  time: 0.0408  data: 0.0001  max mem: 4456
+Test:  [52/53]  eta: 0:00:00  loss: 2.5198 (2.5864)  acc1: 60.9375 (58.4100)  acc5: 78.1250 (77.8400)  time: 0.0389  data: 0.0001  max mem: 4456
+Test: Total time: 0:00:03 (0.0650 s / it)
+* Acc@1 58.410 Acc@5 77.840 loss 2.586
+Accuracy of the network on the 10000 test images: 58.4%
+Saving checkpoint to checkpoints/repvit_m0_9/2025_06_03_20_40_58/checkpoint_22.pth
+Max accuracy: 58.41%
+Epoch: [23]  [  0/780]  eta: 0:13:47  lr: 0.000422  loss: 4.0623 (4.0623)  time: 1.0607  data: 0.8827  max mem: 4456
+Epoch: [23]  [100/780]  eta: 0:01:38  lr: 0.000422  loss: 4.0032 (4.1032)  time: 0.1350  data: 0.0002  max mem: 4456
+Epoch: [23]  [200/780]  eta: 0:01:21  lr: 0.000422  loss: 4.1133 (4.1490)  time: 0.1369  data: 0.0002  max mem: 4456
+Epoch: [23]  [300/780]  eta: 0:01:07  lr: 0.000422  loss: 4.4310 (4.1543)  time: 0.1374  data: 0.0002  max mem: 4456
+Epoch: [23]  [400/780]  eta: 0:00:53  lr: 0.000422  loss: 4.2019 (4.1569)  time: 0.1353  data: 0.0002  max mem: 4456
+Epoch: [23]  [500/780]  eta: 0:00:38  lr: 0.000422  loss: 3.8454 (4.1464)  time: 0.1353  data: 0.0002  max mem: 4456
+Epoch: [23]  [600/780]  eta: 0:00:24  lr: 0.000422  loss: 3.8218 (4.1295)  time: 0.1392  data: 0.0002  max mem: 4456
+Epoch: [23]  [700/780]  eta: 0:00:11  lr: 0.000422  loss: 3.9107 (4.1123)  time: 0.1356  data: 0.0002  max mem: 4456
+Epoch: [23]  [779/780]  eta: 0:00:00  lr: 0.000422  loss: 3.7681 (4.1018)  time: 0.1319  data: 0.0001  max mem: 4456
+Epoch: [23] Total time: 0:01:47 (0.1377 s / it)
+Averaged stats: lr: 0.000422  loss: 3.7681 (4.1018)
+Test:  [ 0/53]  eta: 0:01:01  loss: 1.6513 (1.6513)  acc1: 75.0000 (75.0000)  acc5: 87.5000 (87.5000)  time: 1.1547  data: 1.1156  max mem: 4456
+Test:  [10/53]  eta: 0:00:06  loss: 1.9526 (2.2552)  acc1: 68.2292 (64.3939)  acc5: 85.9375 (83.4280)  time: 0.1434  data: 0.1019  max mem: 4456
+Test:  [20/53]  eta: 0:00:03  loss: 2.2840 (2.3822)  acc1: 60.9375 (61.8304)  acc5: 82.2917 (80.9276)  time: 0.0461  data: 0.0043  max mem: 4456
+Test:  [30/53]  eta: 0:00:01  loss: 2.2840 (2.4401)  acc1: 60.4167 (61.0719)  acc5: 80.7292 (80.9140)  time: 0.0470  data: 0.0043  max mem: 4456
+Test:  [40/53]  eta: 0:00:00  loss: 2.4327 (2.5241)  acc1: 59.8958 (59.7561)  acc5: 79.1667 (78.8872)  time: 0.0427  data: 0.0004  max mem: 4456
+Test:  [50/53]  eta: 0:00:00  loss: 2.4881 (2.5184)  acc1: 59.8958 (59.6916)  acc5: 76.0417 (78.8092)  time: 0.0405  data: 0.0001  max mem: 4456
+Test:  [52/53]  eta: 0:00:00  loss: 2.4881 (2.5097)  acc1: 59.8958 (59.6400)  acc5: 79.1667 (78.8900)  time: 0.0387  data: 0.0001  max mem: 4456
+Test: Total time: 0:00:03 (0.0651 s / it)
+* Acc@1 59.640 Acc@5 78.890 loss 2.510
+Accuracy of the network on the 10000 test images: 59.6%
+Saving checkpoint to checkpoints/repvit_m0_9/2025_06_03_20_40_58/checkpoint_23.pth
+Max accuracy: 59.64%
+Epoch: [24]  [  0/780]  eta: 0:11:38  lr: 0.000330  loss: 4.1385 (4.1385)  time: 0.8957  data: 0.7193  max mem: 4456
+Epoch: [24]  [100/780]  eta: 0:01:37  lr: 0.000330  loss: 4.0180 (4.0738)  time: 0.1405  data: 0.0002  max mem: 4456
+Epoch: [24]  [200/780]  eta: 0:01:20  lr: 0.000330  loss: 4.0752 (4.0863)  time: 0.1344  data: 0.0002  max mem: 4456
+Epoch: [24]  [300/780]  eta: 0:01:06  lr: 0.000330  loss: 4.0057 (4.0668)  time: 0.1356  data: 0.0002  max mem: 4456
+Epoch: [24]  [400/780]  eta: 0:00:52  lr: 0.000330  loss: 4.2708 (4.0761)  time: 0.1351  data: 0.0002  max mem: 4456
+Epoch: [24]  [500/780]  eta: 0:00:38  lr: 0.000330  loss: 4.2883 (4.0772)  time: 0.1351  data: 0.0002  max mem: 4456
+Epoch: [24]  [600/780]  eta: 0:00:24  lr: 0.000330  loss: 3.9781 (4.0592)  time: 0.1350  data: 0.0002  max mem: 4456
+Epoch: [24]  [700/780]  eta: 0:00:10  lr: 0.000330  loss: 4.2067 (4.0438)  time: 0.1357  data: 0.0002  max mem: 4456
+Epoch: [24]  [779/780]  eta: 0:00:00  lr: 0.000330  loss: 4.0467 (4.0486)  time: 0.1325  data: 0.0001  max mem: 4456
+Epoch: [24] Total time: 0:01:46 (0.1367 s / it)
+Averaged stats: lr: 0.000330  loss: 4.0467 (4.0486)
+Test:  [ 0/53]  eta: 0:00:58  loss: 1.9170 (1.9170)  acc1: 70.8333 (70.8333)  acc5: 89.5833 (89.5833)  time: 1.1097  data: 1.0701  max mem: 4456
+Test:  [10/53]  eta: 0:00:05  loss: 2.0838 (2.3127)  acc1: 67.7083 (64.4886)  acc5: 85.4167 (83.8068)  time: 0.1393  data: 0.0977  max mem: 4456
+Test:  [20/53]  eta: 0:00:03  loss: 2.4169 (2.3662)  acc1: 62.5000 (62.9712)  acc5: 80.7292 (82.3909)  time: 0.0478  data: 0.0063  max mem: 4456
+Test:  [30/53]  eta: 0:00:01  loss: 2.4536 (2.4449)  acc1: 60.4167 (62.0464)  acc5: 79.1667 (81.5356)  time: 0.0485  data: 0.0064  max mem: 4456
+Test:  [40/53]  eta: 0:00:00  loss: 2.4536 (2.5006)  acc1: 61.4583 (60.7851)  acc5: 79.1667 (80.1956)  time: 0.0427  data: 0.0004  max mem: 4456
+Test:  [50/53]  eta: 0:00:00  loss: 2.5016 (2.4908)  acc1: 61.4583 (61.0192)  acc5: 79.6875 (80.3513)  time: 0.0408  data: 0.0002  max mem: 4456
+Test:  [52/53]  eta: 0:00:00  loss: 2.5016 (2.4863)  acc1: 61.4583 (60.9400)  acc5: 79.6875 (80.3800)  time: 0.0389  data: 0.0001  max mem: 4456
+Test: Total time: 0:00:03 (0.0650 s / it)
+* Acc@1 60.940 Acc@5 80.380 loss 2.486
+Accuracy of the network on the 10000 test images: 60.9%
+Saving checkpoint to checkpoints/repvit_m0_9/2025_06_03_20_40_58/checkpoint_24.pth
+Max accuracy: 60.94%
+Epoch: [25]  [  0/780]  eta: 0:13:10  lr: 0.000248  loss: 3.6332 (3.6332)  time: 1.0133  data: 0.8415  max mem: 4456
+Epoch: [25]  [100/780]  eta: 0:01:38  lr: 0.000248  loss: 3.9045 (4.0278)  time: 0.1347  data: 0.0002  max mem: 4456
+Epoch: [25]  [200/780]  eta: 0:01:21  lr: 0.000248  loss: 4.2916 (4.0242)  time: 0.1361  data: 0.0002  max mem: 4456
+Epoch: [25]  [300/780]  eta: 0:01:06  lr: 0.000248  loss: 4.1913 (4.0185)  time: 0.1359  data: 0.0002  max mem: 4456
+Epoch: [25]  [400/780]  eta: 0:00:52  lr: 0.000248  loss: 4.2063 (4.0084)  time: 0.1352  data: 0.0002  max mem: 4456
+Epoch: [25]  [500/780]  eta: 0:00:38  lr: 0.000248  loss: 3.8980 (4.0024)  time: 0.1359  data: 0.0002  max mem: 4456
+Epoch: [25]  [600/780]  eta: 0:00:24  lr: 0.000248  loss: 4.1804 (4.0120)  time: 0.1359  data: 0.0002  max mem: 4456
+Epoch: [25]  [700/780]  eta: 0:00:10  lr: 0.000248  loss: 3.8352 (3.9875)  time: 0.1357  data: 0.0002  max mem: 4456
+Epoch: [25]  [779/780]  eta: 0:00:00  lr: 0.000248  loss: 4.0206 (3.9789)  time: 0.1319  data: 0.0001  max mem: 4456
+Epoch: [25] Total time: 0:01:46 (0.1371 s / it)
+Averaged stats: lr: 0.000248  loss: 4.0206 (3.9789)
+Test:  [ 0/53]  eta: 0:00:57  loss: 1.6973 (1.6973)  acc1: 75.5208 (75.5208)  acc5: 88.5417 (88.5417)  time: 1.0896  data: 1.0507  max mem: 4456
+Test:  [10/53]  eta: 0:00:06  loss: 2.0649 (2.2228)  acc1: 71.3542 (66.1458)  acc5: 86.4583 (85.1326)  time: 0.1441  data: 0.1026  max mem: 4456
+Test:  [20/53]  eta: 0:00:03  loss: 2.2581 (2.2958)  acc1: 62.5000 (64.0377)  acc5: 82.8125 (83.6310)  time: 0.0467  data: 0.0043  max mem: 4456
+Test:  [30/53]  eta: 0:00:01  loss: 2.4395 (2.3815)  acc1: 55.7292 (62.7688)  acc5: 80.2083 (82.8125)  time: 0.0437  data: 0.0007  max mem: 4456
+Test:  [40/53]  eta: 0:00:00  loss: 2.4373 (2.4391)  acc1: 60.9375 (61.9411)  acc5: 79.1667 (81.4787)  time: 0.0449  data: 0.0026  max mem: 4456
+Test:  [50/53]  eta: 0:00:00  loss: 2.3595 (2.4228)  acc1: 65.6250 (62.2141)  acc5: 80.7292 (81.6279)  time: 0.0428  data: 0.0024  max mem: 4456
+Test:  [52/53]  eta: 0:00:00  loss: 2.3595 (2.4212)  acc1: 65.6250 (62.1300)  acc5: 81.2500 (81.6500)  time: 0.0401  data: 0.0016  max mem: 4456
+Test: Total time: 0:00:03 (0.0650 s / it)
+* Acc@1 62.130 Acc@5 81.650 loss 2.421
+Accuracy of the network on the 10000 test images: 62.1%
+Saving checkpoint to checkpoints/repvit_m0_9/2025_06_03_20_40_58/checkpoint_25.pth
+Max accuracy: 62.13%
+Epoch: [26]  [  0/780]  eta: 0:11:24  lr: 0.000177  loss: 4.2619 (4.2619)  time: 0.8777  data: 0.7260  max mem: 4456
+Epoch: [26]  [100/780]  eta: 0:01:38  lr: 0.000177  loss: 4.0900 (3.9763)  time: 0.1348  data: 0.0002  max mem: 4456
+Epoch: [26]  [200/780]  eta: 0:01:21  lr: 0.000177  loss: 4.0206 (3.9809)  time: 0.1357  data: 0.0002  max mem: 4456
+Epoch: [26]  [300/780]  eta: 0:01:07  lr: 0.000177  loss: 4.1781 (3.9751)  time: 0.1380  data: 0.0002  max mem: 4456
+Epoch: [26]  [400/780]  eta: 0:00:53  lr: 0.000177  loss: 4.1061 (3.9907)  time: 0.1378  data: 0.0002  max mem: 4456
+Epoch: [26]  [500/780]  eta: 0:00:39  lr: 0.000177  loss: 4.1539 (3.9803)  time: 0.1382  data: 0.0002  max mem: 4456
+Epoch: [26]  [600/780]  eta: 0:00:25  lr: 0.000177  loss: 3.9889 (3.9717)  time: 0.1382  data: 0.0002  max mem: 4456
+Epoch: [26]  [700/780]  eta: 0:00:11  lr: 0.000177  loss: 3.8515 (3.9521)  time: 0.1382  data: 0.0002  max mem: 4456
+Epoch: [26]  [779/780]  eta: 0:00:00  lr: 0.000177  loss: 3.8263 (3.9424)  time: 0.1345  data: 0.0001  max mem: 4456
+Epoch: [26] Total time: 0:01:48 (0.1392 s / it)
+Averaged stats: lr: 0.000177  loss: 3.8263 (3.9424)
+Test:  [ 0/53]  eta: 0:01:05  loss: 1.6112 (1.6112)  acc1: 74.4792 (74.4792)  acc5: 88.0208 (88.0208)  time: 1.2277  data: 1.1871  max mem: 4456
+Test:  [10/53]  eta: 0:00:06  loss: 2.0071 (2.1411)  acc1: 70.8333 (66.2879)  acc5: 86.9792 (85.7008)  time: 0.1506  data: 0.1084  max mem: 4456
+Test:  [20/53]  eta: 0:00:03  loss: 2.2554 (2.2466)  acc1: 63.0208 (64.1865)  acc5: 83.3333 (84.0278)  time: 0.0432  data: 0.0005  max mem: 4456
+Test:  [30/53]  eta: 0:00:01  loss: 2.3921 (2.2984)  acc1: 62.5000 (63.6425)  acc5: 82.2917 (83.5013)  time: 0.0435  data: 0.0006  max mem: 4456
+Test:  [40/53]  eta: 0:00:00  loss: 2.4013 (2.3699)  acc1: 62.5000 (62.5635)  acc5: 80.7292 (81.9995)  time: 0.0427  data: 0.0005  max mem: 4456
+Test:  [50/53]  eta: 0:00:00  loss: 2.4013 (2.3657)  acc1: 64.5833 (62.9493)  acc5: 81.2500 (82.1589)  time: 0.0405  data: 0.0002  max mem: 4456
+Test:  [52/53]  eta: 0:00:00  loss: 2.4013 (2.3593)  acc1: 64.5833 (62.8500)  acc5: 81.2500 (82.1900)  time: 0.0388  data: 0.0001  max mem: 4456
+Test: Total time: 0:00:03 (0.0654 s / it)
+* Acc@1 62.850 Acc@5 82.190 loss 2.359
+Accuracy of the network on the 10000 test images: 62.9%
+Saving checkpoint to checkpoints/repvit_m0_9/2025_06_03_20_40_58/checkpoint_26.pth
+Max accuracy: 62.85%
+Epoch: [27]  [  0/780]  eta: 0:11:35  lr: 0.000118  loss: 4.3058 (4.3058)  time: 0.8921  data: 0.7166  max mem: 4456
+Epoch: [27]  [100/780]  eta: 0:01:39  lr: 0.000118  loss: 4.1934 (3.8795)  time: 0.1383  data: 0.0002  max mem: 4456
+Epoch: [27]  [200/780]  eta: 0:01:22  lr: 0.000118  loss: 4.1719 (3.9441)  time: 0.1384  data: 0.0002  max mem: 4456
+Epoch: [27]  [300/780]  eta: 0:01:08  lr: 0.000118  loss: 4.0274 (3.9220)  time: 0.1420  data: 0.0002  max mem: 4456
+Epoch: [27]  [400/780]  eta: 0:00:53  lr: 0.000118  loss: 3.7045 (3.9098)  time: 0.1390  data: 0.0002  max mem: 4456
+Epoch: [27]  [500/780]  eta: 0:00:39  lr: 0.000118  loss: 3.7083 (3.8884)  time: 0.1385  data: 0.0002  max mem: 4456
+Epoch: [27]  [600/780]  eta: 0:00:25  lr: 0.000118  loss: 3.7100 (3.8799)  time: 0.1431  data: 0.0002  max mem: 4456
+Epoch: [27]  [700/780]  eta: 0:00:11  lr: 0.000118  loss: 4.0598 (3.8805)  time: 0.1383  data: 0.0002  max mem: 4456
+Epoch: [27]  [779/780]  eta: 0:00:00  lr: 0.000118  loss: 3.7253 (3.8810)  time: 0.1383  data: 0.0001  max mem: 4456
+Epoch: [27] Total time: 0:01:49 (0.1398 s / it)
+Averaged stats: lr: 0.000118  loss: 3.7253 (3.8810)
+Test:  [ 0/53]  eta: 0:01:00  loss: 1.7335 (1.7335)  acc1: 75.0000 (75.0000)  acc5: 88.5417 (88.5417)  time: 1.1421  data: 1.1015  max mem: 4456
+Test:  [10/53]  eta: 0:00:06  loss: 2.0380 (2.1790)  acc1: 69.7917 (66.6193)  acc5: 86.9792 (86.1269)  time: 0.1512  data: 0.1092  max mem: 4456
+Test:  [20/53]  eta: 0:00:03  loss: 2.2393 (2.2545)  acc1: 63.0208 (65.0298)  acc5: 83.8542 (84.3750)  time: 0.0478  data: 0.0054  max mem: 4456
+Test:  [30/53]  eta: 0:00:01  loss: 2.4991 (2.3268)  acc1: 60.9375 (64.4657)  acc5: 82.8125 (83.9046)  time: 0.0435  data: 0.0007  max mem: 4456
+Test:  [40/53]  eta: 0:00:00  loss: 2.4922 (2.3836)  acc1: 63.5417 (63.5417)  acc5: 81.2500 (82.6220)  time: 0.0425  data: 0.0004  max mem: 4456
+Test:  [50/53]  eta: 0:00:00  loss: 2.2439 (2.3680)  acc1: 66.1458 (63.7051)  acc5: 81.7708 (82.7717)  time: 0.0405  data: 0.0002  max mem: 4456
+Test:  [52/53]  eta: 0:00:00  loss: 2.2439 (2.3663)  acc1: 66.1458 (63.6100)  acc5: 83.8542 (82.8000)  time: 0.0385  data: 0.0001  max mem: 4456
+Test: Total time: 0:00:03 (0.0654 s / it)
+* Acc@1 63.610 Acc@5 82.800 loss 2.366
+Accuracy of the network on the 10000 test images: 63.6%
+Saving checkpoint to checkpoints/repvit_m0_9/2025_06_03_20_40_58/checkpoint_27.pth
+Max accuracy: 63.61%
+Epoch: [28]  [  0/780]  eta: 0:11:05  lr: 0.000071  loss: 4.2640 (4.2640)  time: 0.8532  data: 0.6968  max mem: 4456
+Epoch: [28]  [100/780]  eta: 0:01:39  lr: 0.000071  loss: 3.9887 (3.9280)  time: 0.1381  data: 0.0002  max mem: 4456
+Epoch: [28]  [200/780]  eta: 0:01:22  lr: 0.000071  loss: 3.7247 (3.9054)  time: 0.1376  data: 0.0002  max mem: 4456
+Epoch: [28]  [300/780]  eta: 0:01:07  lr: 0.000071  loss: 3.5907 (3.8835)  time: 0.1379  data: 0.0002  max mem: 4456
+Epoch: [28]  [400/780]  eta: 0:00:53  lr: 0.000071  loss: 3.7856 (3.8872)  time: 0.1382  data: 0.0002  max mem: 4456
+Epoch: [28]  [500/780]  eta: 0:00:39  lr: 0.000071  loss: 4.2145 (3.9032)  time: 0.1386  data: 0.0002  max mem: 4456
+Epoch: [28]  [600/780]  eta: 0:00:25  lr: 0.000071  loss: 3.9366 (3.9012)  time: 0.1383  data: 0.0002  max mem: 4456
+Epoch: [28]  [700/780]  eta: 0:00:11  lr: 0.000071  loss: 3.7984 (3.8991)  time: 0.1391  data: 0.0002  max mem: 4456
+Epoch: [28]  [779/780]  eta: 0:00:00  lr: 0.000071  loss: 3.8584 (3.8883)  time: 0.1354  data: 0.0001  max mem: 4456
+Epoch: [28] Total time: 0:01:49 (0.1400 s / it)
+Averaged stats: lr: 0.000071  loss: 3.8584 (3.8883)
+Test:  [ 0/53]  eta: 0:00:54  loss: 1.6495 (1.6495)  acc1: 77.0833 (77.0833)  acc5: 89.0625 (89.0625)  time: 1.0205  data: 0.9623  max mem: 4456
+Test:  [10/53]  eta: 0:00:06  loss: 1.9573 (2.1207)  acc1: 72.3958 (67.8030)  acc5: 87.5000 (86.1742)  time: 0.1468  data: 0.1038  max mem: 4456
+Test:  [20/53]  eta: 0:00:03  loss: 2.3422 (2.2089)  acc1: 62.5000 (65.7738)  acc5: 84.3750 (84.7966)  time: 0.0542  data: 0.0123  max mem: 4456
+Test:  [30/53]  eta: 0:00:01  loss: 2.3422 (2.2546)  acc1: 62.5000 (65.2554)  acc5: 83.3333 (84.3918)  time: 0.0462  data: 0.0036  max mem: 4456
+Test:  [40/53]  eta: 0:00:00  loss: 2.3276 (2.3083)  acc1: 65.1042 (64.1641)  acc5: 82.8125 (83.3206)  time: 0.0423  data: 0.0004  max mem: 4456
+Test:  [50/53]  eta: 0:00:00  loss: 2.2588 (2.2933)  acc1: 65.6250 (64.2361)  acc5: 82.8125 (83.3435)  time: 0.0403  data: 0.0002  max mem: 4456
+Test:  [52/53]  eta: 0:00:00  loss: 2.2588 (2.2951)  acc1: 65.6250 (64.1700)  acc5: 83.3333 (83.4100)  time: 0.0384  data: 0.0001  max mem: 4456
+Test: Total time: 0:00:03 (0.0654 s / it)
+* Acc@1 64.170 Acc@5 83.410 loss 2.295
+Accuracy of the network on the 10000 test images: 64.2%
+Saving checkpoint to checkpoints/repvit_m0_9/2025_06_03_20_40_58/checkpoint_28.pth
+Max accuracy: 64.17%
+Epoch: [29]  [  0/780]  eta: 0:11:46  lr: 0.000037  loss: 4.2454 (4.2454)  time: 0.9059  data: 0.7529  max mem: 4456
+Epoch: [29]  [100/780]  eta: 0:01:40  lr: 0.000037  loss: 3.9032 (3.8565)  time: 0.1380  data: 0.0002  max mem: 4456
+Epoch: [29]  [200/780]  eta: 0:01:23  lr: 0.000037  loss: 4.0106 (3.8940)  time: 0.1425  data: 0.0002  max mem: 4456
+Epoch: [29]  [300/780]  eta: 0:01:08  lr: 0.000037  loss: 4.0481 (3.8707)  time: 0.1386  data: 0.0002  max mem: 4456
+Epoch: [29]  [400/780]  eta: 0:00:53  lr: 0.000037  loss: 4.0096 (3.8740)  time: 0.1383  data: 0.0002  max mem: 4456
+Epoch: [29]  [500/780]  eta: 0:00:39  lr: 0.000037  loss: 3.9804 (3.8630)  time: 0.1390  data: 0.0002  max mem: 4456
+Epoch: [29]  [600/780]  eta: 0:00:25  lr: 0.000037  loss: 3.9426 (3.8575)  time: 0.1383  data: 0.0002  max mem: 4456
+Epoch: [29]  [700/780]  eta: 0:00:11  lr: 0.000037  loss: 4.0466 (3.8508)  time: 0.1379  data: 0.0002  max mem: 4456
+Epoch: [29]  [779/780]  eta: 0:00:00  lr: 0.000037  loss: 3.5047 (3.8407)  time: 0.1348  data: 0.0001  max mem: 4456
+Epoch: [29] Total time: 0:01:49 (0.1398 s / it)
+Averaged stats: lr: 0.000037  loss: 3.5047 (3.8407)
+Test:  [ 0/53]  eta: 0:00:47  loss: 1.6729 (1.6729)  acc1: 78.6458 (78.6458)  acc5: 90.6250 (90.6250)  time: 0.9007  data: 0.8550  max mem: 4456
+Test:  [10/53]  eta: 0:00:06  loss: 1.9071 (2.0925)  acc1: 71.8750 (69.0341)  acc5: 88.5417 (86.6004)  time: 0.1399  data: 0.0972  max mem: 4456
+Test:  [20/53]  eta: 0:00:03  loss: 2.3037 (2.1872)  acc1: 63.0208 (66.7659)  acc5: 84.3750 (85.1190)  time: 0.0566  data: 0.0140  max mem: 4456
+Test:  [30/53]  eta: 0:00:01  loss: 2.3037 (2.2124)  acc1: 64.0625 (66.3306)  acc5: 84.3750 (84.9630)  time: 0.0464  data: 0.0036  max mem: 4456
+Test:  [40/53]  eta: 0:00:00  loss: 2.2413 (2.2706)  acc1: 64.5833 (64.9771)  acc5: 81.7708 (83.6890)  time: 0.0424  data: 0.0004  max mem: 4456
+Test:  [50/53]  eta: 0:00:00  loss: 2.2084 (2.2651)  acc1: 65.6250 (64.9101)  acc5: 82.2917 (83.8848)  time: 0.0404  data: 0.0002  max mem: 4456
+Test:  [52/53]  eta: 0:00:00  loss: 2.2084 (2.2687)  acc1: 65.6250 (64.8200)  acc5: 83.3333 (83.9500)  time: 0.0385  data: 0.0001  max mem: 4456
+Test: Total time: 0:00:03 (0.0642 s / it)
+* Acc@1 64.820 Acc@5 83.950 loss 2.269
+Accuracy of the network on the 10000 test images: 64.8%
+Saving checkpoint to checkpoints/repvit_m0_9/2025_06_03_20_40_58/checkpoint_29.pth
+Max accuracy: 64.82%
+Training time 0:56:29
+wandb:                                                                                
+wandb: 
+wandb: Run history:
+wandb:        epoch ▁▁▁▂▂▂▂▃▃▃▃▄▄▄▄▅▅▅▅▆▆▆▆▇▇▇▇███
+wandb: max_accuracy ▁▁▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇██████
+wandb:    test_acc1 ▁▁▇▆▅▄▃▄▄▄▅▅▅▅▅▆▆▆▆▇▇▇▇▇██████
+wandb:    test_acc5 ▁▁█▇▆▅▄▅▅▅▅▆▆▆▆▆▆▇▇▇▇▇▇███████
+wandb:    test_loss ██▂▃▄▅▆▅▅▄▄▄▄▃▃▃▃▃▃▂▂▂▂▂▂▁▁▁▁▁
+wandb:   train_loss ██▆▅▆▆▇▆▆▆▆▅▅▅▅▄▄▄▄▃▃▃▃▂▂▂▁▁▁▁
+wandb:     train_lr ▁▁▃▄▆▇███▇▇▇▆▆▆▅▅▄▄▄▃▃▃▂▂▂▂▁▁▁
+wandb: 
+wandb: Run summary:
+wandb:        epoch 29
+wandb: max_accuracy 64.82
+wandb:    test_acc1 64.82
+wandb:    test_acc5 83.95
+wandb:    test_loss 2.26867
+wandb:   train_loss 3.84071
+wandb:     train_lr 4e-05
+wandb: 
+wandb: 🚀 View run M0.9_none at: https://wandb.ai/11111239-national-taitung-university/repvit_chen/runs/lqi0ruhj
+wandb: ⭐️ View project at: https://wandb.ai/11111239-national-taitung-university/repvit_chen
+wandb: Synced 5 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20250603_204059-lqi0ruhj/logs
+(repvit) lab@lab-ROG-Strix-GA35DX-G35DX:~/Desktop/RepVit/1132_ML-main$ 
